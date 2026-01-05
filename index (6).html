@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Korea Biotech CEO Forum 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        /* [스타일 설정] 변수 및 기본 설정 */
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #2c5f4f;
+            --accent: #d4af37;
+            --light: #f8f6f1;
+            --white: #ffffff;
+            --gray: #666666;
+            --tab-active: #006c8a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Noto Sans KR', 'Outfit', sans-serif;
+            color: var(--primary);
+            background: var(--light);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* [Hero 섹션] 상단 타이틀 영역 */
+        .hero {
+            min-height: 80vh;
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5f4f 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+        }
+
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+
+        .hero-content {
+            text-align: center;
+            color: var(--white);
+            z-index: 1;
+            padding: 2rem;
+            animation: fadeInUp 1.2s ease-out;
+            width: 100%;
+        }
+
+        .logo {
+            max-width: 850px;
+            width: 85%;
+            display: block;
+            margin: 0 auto;
+            /* 로고 아래 여백을 마이너스로 줘서 노란 바를 끌어올림 */
+            margin-bottom: -30px; 
+        }
+
+        .hero .date-location {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            letter-spacing: 0.1em;
+            margin-top: 0;
+            line-height: 1.2;
+        }
+
+        .divider {
+            width: 100%;
+            max-width: 150px; 
+            height: 2px;
+            background: var(--accent);
+            /* ▼▼▼ 여백 수정됨: 위쪽은 가깝게(10px), 아래쪽(날짜)은 띄움(25px) ▼▼▼ */
+            margin-top: 10px;
+            margin-bottom: 25px;
+            margin-left: auto;
+            margin-right: auto;
+            /* ▲▲▲ 수정 완료 ▲▲▲ */
+            position: relative;
+            z-index: 10;
+        }
+
+        /* [메인 컨테이너 및 탭] */
+        .main-container {
+            max-width: 900px;
+            margin: -50px auto 50px;
+            position: relative;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            z-index: 10;
+        }
+
+        .tab-menu {
+            display: flex;
+            border-bottom: 1px solid #eee;
+            background: #fff;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 20px;
+            text-align: center;
+            background: none;
+            border: none;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            color: #888;
+            transition: 0.3s;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .tab-btn:hover { background-color: #fafafa; }
+        .tab-btn.active {
+            color: var(--secondary);
+            border-bottom: 3px solid var(--secondary);
+            background-color: #fff;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 40px;
+            animation: fadeIn 0.5s ease-out;
+        }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* [컨텐츠 스타일] */
+        .intro-text p { margin-bottom: 1.5rem; text-align: justify; color: var(--gray); }
+        
+        /* 강조 박스 스타일 */
+        .intro-highlight {
+            background-color: rgba(44, 95, 79, 0.05);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-weight: 500;
+            color: var(--secondary);
+            line-height: 1.8;
+            border-left: 4px solid var(--secondary);
+        }
+
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        .schedule-row { border-bottom: 1px solid #eee; }
+        .schedule-row:last-child { border-bottom: none; }
+        
+        .time-col {
+            width: 30%;
+            background-color: #f9f9f9;
+            padding: 20px;
+            font-weight: 600;
+            vertical-align: top;
+            color: var(--secondary);
+            font-family: 'Outfit', sans-serif;
+        }
+        
+        .content-col { padding: 20px; width: 70%; }
+        
+        .theme-tag {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .discussion-points {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .discussion-points li {
+            margin-bottom: 5px;
+            color: #555;
+            font-size: 15px;
+        }
+
+        .footer-info {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+            font-size: 14px;
+            color: #555;
+            text-align: left;
+        }
+        .footer-info p { margin: 8px 0; }
+        .footer-info strong { color: var(--secondary); }
+
+        @media (max-width: 768px) {
+            .main-container { margin: 0; border-radius: 0; }
+            .time-col { width: 100%; display: block; background: #f4f4f4; border-bottom: none; padding-bottom: 5px; }
+            .content-col { width: 100%; display: block; padding-top: 5px; }
+            .tab-btn { padding: 15px; font-size: 16px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero">
+        <div class="hero-content">
+            <img src="logo.jpg" alt="Korea Biotech CEO Forum Logo" class="logo">
+            <div class="divider"></div>
+            <div class="date-location">2026년 2월 27일(금) - 3월 1일(일) · 제주</div>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <nav class="tab-menu">
+            <button class="tab-btn active" onclick="openTab(event, 'intro')"> 인사말 </button>
+            <button class="tab-btn" onclick="openTab(event, 'schedule')"> 프로그램 </button>
+        </nav>
+
+        <div id="intro" class="tab-content active">
+            <div class="intro-text">
+                <h2>Korea Biotech CEO Forum 안내</h2>
+                
+                <p>한국 바이오 산업은 지난 수십 년간 연구개발 역량의 축적과 지속적인 사업 확장을 통해 글로벌 시장에서 점차 의미 있는 위치를 확대하고 있습니다.</p>
+                
+                <p>다만 산업의 외형적 성장과는 달리, 바이오 기업을 이끌어가는 리더들에게는 사업과 기술, 조직과 자본에 대한 현실적인 고민을 허심탄회하게 나눌 수 있는 환경은 여전히 제한적인 것이 현실입니다.</p>
+                
+                <p>이에 미국의 Biotech CEO Forum에 영감을 얻어, 한국 바이오 산업의 CEO 및 주요 리더들을 위한 <strong>채텀하우스룰·비공개·초청형 포럼</strong>을 새로운 형식으로 시작하고자 합니다.</p>
+
+                <p>예를 들어 <strong>Laguna CEO Forum</strong>은 30년 이상 유지되어 온 미국 바이오 업계의 대표적인 CEO 포럼으로, 공개 행사나 마케팅 목적의 컨퍼런스와는 달리 초청된 CEO들만이 참여하는 클로즈드 포럼으로 운영되어 왔습니다.</p>
+                
+                <p>이 포럼은 기술과 사업의 단기 이슈를 넘어, 산업이 직면한 구조적 과제와 중·장기 전략을 신뢰를 전제로 논의하는 기능을 해왔습니다. 실제로 Roche의 Genentech 인수 논의를 비롯해, 다수의 전략적 파트너십과 인수·합병이 공식 무대가 아닌 비공식적인 대화 속에서 시작되었습니다.</p>
+
+                <div class="intro-highlight">
+                    이번 Korea Biotech CEO Forum은 채텀하우스룰 원칙을 반영하여, 발표 중심의 프로그램이나 외부 노출 없이, 제주라는 일상에서 벗어난 공간에서 바이오 산업의 현재와 미래에 대해 실질적인 의견 교환이 이루어질 수 있도록 구성됩니다.
+                </div>
+                
+                <p>업계를 대표하는 연사 및 패널들과의 논의와 함께, 참석자 상호 간의 경험 공유와 신뢰 형성을 통해 서로에게 실무적으로도 실질적인 도움이 되는 통찰과 관계를 만들어가는 의미있는 모임이 되기를 기대합니다.</p>
+
+                <p style="color: var(--secondary); font-size: 0.9em; margin-top: 20px;">* 본 포럼은 초청된 분들만을 대상으로 진행되는 프라이빗 포럼이며, 포럼의 취지와 운영 원칙을 유지하기 위해 초청의 양도는 어려운 점 양해 부탁드립니다.</p>
+
+                <div class="footer-info">
+                    <p><strong>일시:</strong> 2026년 2월 27일(금) - 3월 1일(일)</p>
+                    <p><strong>장소:</strong> 디아넥스호텔 . 비오토피아 (제주)</p>
+                    <p><strong>운영위원:</strong> 이근우 (진에딧) | 최윤정 (SK바이오팜) | 이승주 (오름테라퓨틱)</p>
+                    <p><strong>Contact:</strong> 김문정 (<a href="mailto:moonjkim01@gmail.com" style="color:inherit; text-decoration:none;">moonjkim01@gmail.com</a>)</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="schedule" class="tab-content">
+            <h2 style="color: var(--secondary); margin-bottom: 20px;">CEO Forum 2026 Program</h2>
+            <table class="schedule-table">
+                <tr class="schedule-row">
+                    <td class="time-col">Session 1<br>Financial Survival Strategy</td>
+                    <td class="content-col">
+                        <span class="theme-tag">Capital</span> <span class="theme-tag" style="background-color: var(--gray)">IPO, Market Truth</span>
+                        <ul class="discussion-points">
+                            <li>The Great Reset</li>
+                            <li>Runway Management & Dilution Strategy</li>
+                            <li>Alternative Financing</li>
+                            <li>KOSDAQ vs. NASDAQ</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr class="schedule-row">
+                    <td class="time-col">Session 2<br>Creative Deal-Making</td>
+                    <td class="content-col">
+                        <span class="theme-tag">Deal-Making</span> <span class="theme-tag" style="background-color: var(--gray)">Capital, Transformation</span>
+                        <ul class="discussion-points">
+                            <li>Partnering as Fundraising</li>
+                            <li>Cross-border Deals</li>
+                            <li>Control & Optionality</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr class="schedule-row">
+                    <td class="time-col">Session 3<br>Global Ops & Lean Team</td>
+                    <td class="content-col">
+                        <span class="theme-tag">Operations</span> <span class="theme-tag" style="background-color: var(--gray)">Leadership, Resilience</span>
+                        <ul class="discussion-points">
+                            <li>Doing more with less</li>
+                            <li>Global Talent deployment</li>
+                            <li>Generational & Cultural Gaps</li>
+                            <li>From Global Clinical Strategy to Commercial Execution</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr class="schedule-row">
+                    <td class="time-col">Session 4<br>Strategic Pivot & Regulation</td>
+                    <td class="content-col">
+                        <span class="theme-tag">Transformation</span> <span class="theme-tag" style="background-color: var(--gray)">Market Truth, Operations</span>
+                        <ul class="discussion-points">
+                            <li>New Government Dynamics</li>
+                            <li>Turning Adversity into Advantage</li>
+                            <li>Policy & Regulatory Shifts</li>
+                            <li>Ecosystem Thinking & Long-Term Sustainability</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr class="schedule-row">
+                    <td class="time-col">Session 5<br>Resilient Leadership</td>
+                    <td class="content-col">
+                        <span class="theme-tag">Leadership</span> <span class="theme-tag" style="background-color: var(--gray)">CEO Burden, Resilience</span>
+                        <ul class="discussion-points">
+                            <li>Leading Executives</li>
+                            <li>Decision-making under Ambiguity</li>
+                            <li>CEO Mental Health</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr class="schedule-row">
+                    <td class="time-col">Session 6<br>Communication & Investor View</td>
+                    <td class="content-col">
+                        <span class="theme-tag">Market Truth</span> <span class="theme-tag" style="background-color: var(--gray)">Leadership, Capital</span>
+                        <ul class="discussion-points">
+                            <li>Strategic Storytelling</li>
+                            <li>Trust as Asset</li>
+                            <li>Investor Expectations & Realities</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+                tabcontent[i].classList.remove("active");
+            }
+            tablinks = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            setTimeout(() => {
+                document.getElementById(tabName).classList.add("active");
+            }, 10);
+            evt.currentTarget.className += " active";
+        }
+    </script>
+</body>
+</html>
