@@ -16,9 +16,9 @@
             --gray: #666666;
             --tab-active: #006c8a;
         }
-
+    
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
+    
         body {
             font-family: 'Noto Sans KR', 'Outfit', sans-serif;
             color: var(--primary);
@@ -26,7 +26,7 @@
             line-height: 1.7;
             overflow-x: hidden;
         }
-
+    
         /* [Hero 섹션] 상단 타이틀 영역 */
         .hero {
             /* 기본(PC) 높이 */
@@ -37,8 +37,10 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
+            /* 로고가 커짐에 따라 상하 패딩을 조금 추가하여 여유 공간 확보 */
+            padding: 4rem 0; 
         }
-
+    
         .hero::before {
             content: '';
             position: absolute;
@@ -47,10 +49,10 @@
             background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
             animation: rotate 30s linear infinite;
         }
-
+    
         @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
-
+    
         .hero-content {
             text-align: center;
             color: var(--white);
@@ -62,15 +64,34 @@
             flex-direction: column;
             align-items: center;
         }
-
+    
+        /* ▼▼▼ [수정됨] 로고 스타일: 크기 확대 및 강력한 입체 그림자 적용 ▼▼▼ */
         .logo {
-            max-width: 850px;
-            width: 85%;
+            /* 1. 크기 확대 */
+            max-width: 1100px; /* 기존 850px에서 증가 */
+            width: 95%;        /* 기존 85%에서 화면 가득 차게 증가 */
             height: auto;
             display: block;
-            margin-bottom: 20px; 
+            margin-bottom: 30px; /* 그림자 공간을 위해 하단 여백 소폭 증가 */
+            
+            /* 2. 입체감(3D Shadow) 추가 */
+            border-radius: 20px; /* 모서리를 둥글게 처리하여 부드러운 느낌 */
+            /* 다중 그림자로 깊이감 표현 (진한 근접 그림자 + 부드러운 원거리 그림자) */
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5), 
+                        0 10px 20px rgba(0,0,0,0.3);
+            
+            /* 부드러운 인터랙션을 위한 트랜지션 */
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-
+    
+        /* (선택사항) 마우스 호버 시 더 떠오르는 효과 */
+        .logo:hover {
+            transform: translateY(-15px) scale(1.02); /* 살짝 위로 뜨면서 커짐 */
+            box-shadow: 0 30px 70px rgba(0,0,0,0.6), 
+                        0 15px 30px rgba(0,0,0,0.4);
+        }
+        /* ▲▲▲ [수정 완료] ▲▲▲ */
+    
         .hero .date-location {
             font-size: clamp(0.9rem, 2.5vw, 1.3rem);
             letter-spacing: 0.05em;
@@ -78,7 +99,7 @@
             word-break: keep-all; 
             padding: 0 10px;
         }
-
+    
         .divider {
             width: 100%;
             max-width: 150px; 
@@ -88,7 +109,7 @@
             position: relative;
             z-index: 10;
         }
-
+    
         /* [메인 컨테이너 및 탭] */
         .main-container {
             max-width: 900px;
@@ -100,13 +121,13 @@
             overflow: hidden;
             z-index: 10;
         }
-
+    
         .tab-menu {
             display: flex;
             border-bottom: 1px solid #eee;
             background: #fff;
         }
-
+    
         .tab-btn {
             flex: 1;
             padding: 20px;
@@ -120,14 +141,14 @@
             transition: 0.3s;
             font-family: 'Noto Sans KR', sans-serif;
         }
-
+    
         .tab-btn:hover { background-color: #fafafa; }
         .tab-btn.active {
             color: var(--secondary);
             border-bottom: 3px solid var(--secondary);
             background-color: #fff;
         }
-
+    
         .tab-content {
             display: none;
             padding: 40px;
@@ -135,7 +156,7 @@
         }
         .tab-content.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
+    
         /* [컨텐츠 스타일] */
         .intro-text p { margin-bottom: 1.5rem; text-align: justify; color: var(--gray); }
         
@@ -149,7 +170,7 @@
             line-height: 1.8;
             border-left: 4px solid var(--secondary);
         }
-
+    
         .schedule-table {
             width: 100%;
             border-collapse: collapse;
@@ -180,7 +201,7 @@
             margin-bottom: 8px;
             font-weight: 500;
         }
-
+    
         .discussion-points {
             margin: 0;
             padding-left: 20px;
@@ -190,7 +211,7 @@
             color: #555;
             font-size: 15px;
         }
-
+    
         .footer-info {
             margin-top: 50px;
             padding-top: 30px;
@@ -202,16 +223,14 @@
         .footer-info p { margin: 8px 0; }
         .footer-info strong { color: var(--secondary); }
         
-        /* [수정된 Contact 버튼 스타일] - 더 작고 더 둥글게 */
+        /* [Contact 버튼 스타일] */
         .contact-pill {
             display: inline-block;
             background-color: rgba(44, 95, 79, 0.05); 
             color: var(--secondary) !important;
             border: 1px solid var(--secondary);
-            /* ▼▼▼ 수정된 부분: 여백을 줄이고(2px 10px), 둥글기를 키움(15px) ▼▼▼ */
             padding: 2px 10px; 
             border-radius: 15px; 
-            /* ▲▲▲ 수정 완료 ▲▲▲ */
             text-decoration: none;
             font-weight: 600;
             font-size: 13px;
@@ -224,24 +243,28 @@
             color: #ffffff !important;
             transform: translateY(-2px);
         }
-
+    
         /* [반응형 미디어 쿼리] */
         @media (max-width: 768px) {
             .hero {
                 min-height: 40vh; 
                 padding-bottom: 30px; 
             }
-
+    
             .main-container { margin: -30px 15px 30px 15px; border-radius: 12px; }
             .time-col { width: 100%; display: block; background: #f4f4f4; border-bottom: none; padding-bottom: 5px; }
             .content-col { width: 100%; display: block; padding-top: 5px; }
             .tab-btn { padding: 15px; font-size: 16px; }
             
+            /* 모바일에서도 로고를 꽉 차게 유지 */
             .logo {
-                width: 95%; 
-                margin-bottom: 10px;
+                width: 100%; 
+                margin-bottom: 20px;
+                /* 모바일에서는 그림자를 약간 줄임 */
+                box-shadow: 0 15px 40px rgba(0,0,0,0.4), 
+                            0 5px 15px rgba(0,0,0,0.2);
             }
-
+    
             .hero .date-location {
                 font-size: 0.95rem; 
                 width: 100%;
