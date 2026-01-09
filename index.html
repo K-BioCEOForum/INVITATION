@@ -29,6 +29,7 @@
 
         /* [Hero 섹션] 상단 타이틀 영역 */
         .hero {
+            /* 기본(PC) 높이 */
             min-height: 80vh;
             background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5f4f 100%);
             display: flex;
@@ -57,22 +58,28 @@
             padding: 2rem;
             animation: fadeInUp 1.2s ease-out;
             width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .logo {
             max-width: 850px;
             width: 85%;
+            height: auto;
             display: block;
-            margin: 0 auto;
-            /* 로고 아래 여백을 마이너스로 줘서 노란 바를 끌어올림 */
-            margin-bottom: -30px; 
+            /* 수정: 마이너스 마진 제거 및 간격 확보 */
+            margin-bottom: 20px; 
         }
 
         .hero .date-location {
-            font-size: clamp(1rem, 2vw, 1.3rem);
-            letter-spacing: 0.1em;
-            margin-top: 0;
-            line-height: 1.2;
+            /* 수정: 폰트 사이즈 조정 및 줄바꿈 방지 */
+            font-size: clamp(0.9rem, 2.5vw, 1.3rem);
+            letter-spacing: 0.05em;
+            line-height: 1.4;
+            /* 한글 단어 잘림 방지 */
+            word-break: keep-all; 
+            padding: 0 10px;
         }
 
         .divider {
@@ -80,12 +87,8 @@
             max-width: 150px; 
             height: 2px;
             background: var(--accent);
-            /* ▼▼▼ 여백 수정됨: 위쪽은 가깝게(10px), 아래쪽(날짜)은 띄움(25px) ▼▼▼ */
-            margin-top: 10px;
-            margin-bottom: 25px;
-            margin-left: auto;
-            margin-right: auto;
-            /* ▲▲▲ 수정 완료 ▲▲▲ */
+            /* 수정: 간격 재조정 */
+            margin: 10px auto 25px auto;
             position: relative;
             z-index: 10;
         }
@@ -140,7 +143,6 @@
         /* [컨텐츠 스타일] */
         .intro-text p { margin-bottom: 1.5rem; text-align: justify; color: var(--gray); }
         
-        /* 강조 박스 스타일 */
         .intro-highlight {
             background-color: rgba(44, 95, 79, 0.05);
             padding: 20px;
@@ -204,11 +206,32 @@
         .footer-info p { margin: 8px 0; }
         .footer-info strong { color: var(--secondary); }
 
+        /* [반응형 미디어 쿼리] */
         @media (max-width: 768px) {
-            .main-container { margin: 0; border-radius: 0; }
+            /* 모바일에서 Hero 섹션 높이 대폭 축소 */
+            .hero {
+                min-height: 40vh; /* 요청하신 대로 훨씬 짧게 변경 */
+                padding-bottom: 30px; /* 컨테이너와 겹치는 부분 고려 */
+            }
+
+            .main-container { margin: -30px 15px 30px 15px; border-radius: 12px; }
             .time-col { width: 100%; display: block; background: #f4f4f4; border-bottom: none; padding-bottom: 5px; }
             .content-col { width: 100%; display: block; padding-top: 5px; }
             .tab-btn { padding: 15px; font-size: 16px; }
+            
+            .logo {
+                width: 95%; /* 모바일에서 로고 크기 확보 */
+                margin-bottom: 10px;
+            }
+
+            /* 모바일 날짜 텍스트 최적화 */
+            .hero .date-location {
+                font-size: 0.95rem; /* 글자 크기를 줄여서 한 줄에 최대한 맞춤 */
+                width: 100%;
+                word-break: keep-all; /* 단어 단위로만 줄바꿈 허용 (글자 깨짐 방지) */
+            }
+            
+            .tab-content { padding: 25px; }
         }
     </style>
 </head>
