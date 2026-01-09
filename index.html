@@ -63,37 +63,31 @@
             align-items: center;
         }
 
-        /* 로고: 그림자 및 입체감 적용됨 */
         .logo {
             max-width: 850px;
             width: 85%;
             height: auto;
             display: block;
-            margin-bottom: 10px; /* 간격 조정 */
+            margin-bottom: 10px;
             filter: drop-shadow(0 12px 24px rgba(0,0,0,0.35)); 
             transform: translateZ(0);
         }
 
-        /* [9번 스타일] Double Line 스타일 정의 */
+        /* [수정됨] 9번 스타일: Date 텍스트 제거 및 전체 노란색 적용 */
         .date-double-line {
             margin-top: 25px;
             padding: 15px 0;
             border-top: 1px solid rgba(255,255,255,0.2);
             border-bottom: 1px solid rgba(255,255,255,0.2);
             width: 100%;
-            max-width: 480px; /* PC 기준 너비 */
-            color: #eee;
-            font-weight: 300;
+            max-width: 480px; 
+            
+            /* 텍스트 색상을 노란색(accent)으로 변경 */
+            color: var(--accent); 
+            font-weight: 500;
             font-size: 1.2rem;
             letter-spacing: 0.03em;
             word-break: keep-all;
-        }
-        
-        .date-double-line strong {
-            color: var(--accent);
-            font-weight: 500;
-            margin-right: 8px;
-            font-family: 'Outfit', sans-serif;
         }
 
         /* [메인 컨테이너 및 탭] */
@@ -246,10 +240,9 @@
                 margin-bottom: 15px;
             }
 
-            /* 모바일에서 날짜 폰트 및 너비 조정 */
             .date-double-line {
                 font-size: 0.95rem; 
-                width: 95%; /* 모바일 너비 확보 */
+                width: 95%; 
                 padding: 12px 0;
                 margin-top: 15px;
             }
@@ -264,7 +257,7 @@
         <div class="hero-content">
             <img src="logo.jpg" alt="Korea Biotech CEO Forum Logo" class="logo">
             <div class="date-location date-double-line">
-                <strong>Date.</strong> 2026년 2월 27일(금) - 3월 1일(일)
+                2026년 2월 27일(금) - 3월 1일(일)
             </div>
         </div>
     </div>
