@@ -16,15 +16,16 @@
             --gray: #666666;
         }
 
-        /* [원본 파일 색상 변수 복원] */
+        /* [원본 파일 색상 변수] */
         :root {
-            /* Program 탭 원본 색상 */
+            /* Program 탭 색상 */
             --prog-blue: #4D8DF5;
             --prog-green: #85AC0D;
             --prog-dark-green: #4B5D16;
             --prog-badge-default: #93B5E1;
+            --prog-title-custom: #7ABA38; /* 보내주신 스크린샷 색상 적용 */
             
-            /* Schedule 탭 원본 색상 */
+            /* Schedule 탭 색상 */
             --sch-teal: #0F6B7E;
             --sch-gradient-start: #0F6B7E;
             --sch-gradient-end: #7ABA38;
@@ -138,7 +139,8 @@
         }
 
         /* [Program 탭 스타일] */
-        #program h2.tab-title { color: var(--prog-blue); }
+        /* 타이틀 색상을 보내주신 연두색으로 변경 */
+        #program h2.tab-title { color: var(--prog-title-custom); } 
         #program .tab-subtitle { color: #555; }
         
         .prog-table { width: 100%; border-collapse: collapse; }
@@ -170,10 +172,10 @@
             font-size: 20px; font-weight: 700; margin-bottom: 8px; color: #222;
         }
         
-        /* [수정됨] 세션 설명 문구 파란색 적용 */
+        /* 세션 설명 문구 파란색 유지 */
         .session-desc {
             font-size: 16px; 
-            color: var(--prog-blue); /* 파란색으로 변경 */
+            color: var(--prog-blue); 
             font-weight: 600;
             margin-bottom: 12px; line-height: 1.5;
         }
@@ -208,6 +210,7 @@
         }
 
         .sch-day-header {
+            /* 기본 그라데이션: Teal -> Green */
             background: linear-gradient(90deg, var(--sch-gradient-start) 0%, var(--sch-gradient-end) 100%);
             color: white;
             padding: 12px 15px;
@@ -222,7 +225,8 @@
         }
 
         .sch-day-header.continued {
-            background: linear-gradient(90deg, var(--sch-gradient-end) 0%, var(--sch-gradient-start) 100%);
+            /* [수정됨] 그라데이션 방향 정방향으로 통일 */
+            background: linear-gradient(90deg, var(--sch-gradient-start) 0%, var(--sch-gradient-end) 100%);
             opacity: 0.95;
         }
 
