@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Korea Biotech CEO Forum 2026</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         /* [스타일 설정] 변수 및 기본 설정 */
         :root {
@@ -72,6 +72,11 @@
             position: relative; background: var(--white);
             border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.1);
             overflow: hidden; z-index: 10;
+        }
+
+        /* 일정표 탭에서는 컨테이너 너비를 더 넓게 사용 */
+        .main-container.wide-mode {
+            max-width: 1100px;
         }
 
         .tab-menu {
@@ -171,45 +176,121 @@
         }
         .track-separator { margin: 25px 0; border-bottom: 1px dashed #ddd; }
 
-        /* [Time Table 탭 (New Schedule Style)] */
-        .day-header {
-            background: linear-gradient(90deg, var(--secondary) 0%, var(--secondary-light) 100%);
-            color: white; padding: 10px 20px; font-size: 16px; font-weight: bold;
-            border-radius: 6px; margin-top: 30px; margin-bottom: 10px;
-            display: flex; justify-content: space-between; align-items: center;
-        }
-        .day-header:first-child { margin-top: 0; }
-        .day-label { opacity: 0.8; font-size: 0.9em; font-family: 'Outfit', sans-serif; }
 
-        .tt-row {
-            display: flex; padding: 15px; border-bottom: 1px solid #eee; align-items: flex-start;
+        /* [일정표 대시보드 스타일 (2단 레이아웃)] */
+        .sch-dashboard {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* 1:1 2단 분할 */
+            gap: 25px;
+            margin-top: 10px;
         }
-        .tt-row:last-child { border-bottom: none; }
-        
-        .tt-time {
-            width: 100px; font-weight: 700; color: #444; font-size: 13px;
-            flex-shrink: 0; padding-top: 2px; font-family: 'Outfit', sans-serif;
+
+        .sch-day-header {
+            background: linear-gradient(90deg, var(--secondary) 0%, var(--secondary-light) 100%);
+            color: white;
+            padding: 12px 15px;
+            font-size: 15px;
+            font-weight: 700;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
-        .tt-content { flex-grow: 1; font-size: 14px; color: #222; }
-        .tt-venue {
-            width: 110px; text-align: right; font-size: 12px;
-            color: var(--secondary); font-weight: 600; flex-shrink: 0; padding-top: 2px;
+
+        .sch-day-header.continued {
+            background: linear-gradient(90deg, var(--secondary-light) 0%, var(--secondary) 100%);
+            opacity: 0.95;
         }
-        .tt-title { font-weight: 800; color: var(--secondary); display: block; margin-bottom: 4px; }
-        .tt-quote {
-            display: block; font-size: 12px; color: #666; font-style: italic;
-            margin-bottom: 8px; background-color: #f4f4f4; padding: 6px 10px;
-            border-radius: 4px; border-left: 3px solid var(--accent);
+
+        .sch-list {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 0 15px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
         }
-        .tt-list { margin: 0; padding-left: 15px; font-size: 13px; color: #555; }
-        .tt-list li { margin-bottom: 3px; }
-        
-        .tt-track-tag {
-            display: inline-block; font-size: 10px; font-weight: bold;
-            padding: 2px 6px; border-radius: 3px; margin-bottom: 4px; margin-top: 5px; color: #fff;
+
+        .sch-row {
+            display: flex;
+            padding: 12px 5px;
+            border-bottom: 1px solid #f0f0f0;
+            align-items: flex-start;
         }
-        .bg-a { background-color: #5c6bc0; }
-        .bg-b { background-color: #66bb6a; }
+        .sch-row:last-child { border-bottom: none; }
+
+        /* 배경색 강조 (만찬 등) */
+        .sch-row.highlight { background-color: #f4fbff; border-radius: 4px; }
+        .sch-row.break { background-color: #f9f9f9; border-radius: 4px; }
+
+        .sch-time {
+            width: 95px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            color: #444;
+            font-size: 13px;
+            flex-shrink: 0;
+            padding-top: 2px;
+        }
+
+        .sch-content {
+            flex-grow: 1;
+            font-size: 14px;
+            color: #222;
+        }
+
+        .sch-title {
+            font-weight: 700;
+            color: var(--secondary);
+            display: block;
+            margin-bottom: 3px;
+            line-height: 1.3;
+        }
+
+        .sch-quote {
+            display: block;
+            font-size: 12px;
+            color: #666;
+            background-color: #f5f5f5;
+            padding: 4px 8px;
+            border-radius: 4px;
+            border-left: 3px solid var(--accent);
+            margin-top: 5px;
+            margin-bottom: 5px;
+            line-height: 1.4;
+        }
+
+        .sch-venue {
+            width: 90px;
+            text-align: right;
+            font-size: 11px;
+            color: var(--secondary-light);
+            font-weight: 600;
+            flex-shrink: 0;
+            padding-top: 3px;
+        }
+
+        /* 트랙 스타일 */
+        .sch-track {
+            margin-top: 8px;
+            padding-top: 6px;
+            border-top: 1px dashed #eee;
+        }
+        .sch-track:first-of-type { border-top: none; padding-top: 0; }
+        .track-badge {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: bold;
+            color: #fff;
+            padding: 2px 6px;
+            border-radius: 3px;
+            margin-bottom: 3px;
+        }
+        .tb-a { background-color: #4D8DF5; }
+        .tb-b { background-color: #85AC0D; }
+
 
         /* Footer Info */
         .footer-info {
@@ -230,11 +311,10 @@
             .prog-time { width: 100%; border-right: none; padding: 10px 0 5px 0; border-bottom: 1px dashed #eee; display: block; color: var(--accent); }
             .prog-content { padding: 10px 0 30px 0; display: block; width: 100%; }
             
-            /* TimeTable Mobile */
-            .tt-row { flex-wrap: wrap; }
-            .tt-time { width: 100%; margin-bottom: 5px; color: var(--accent); }
-            .tt-venue { width: 100%; text-align: left; margin-top: 5px; color: #888; font-size: 11px; }
-            .tt-content { width: 100%; }
+            /* Schedule Mobile */
+            .sch-dashboard { grid-template-columns: 1fr; gap: 10px; }
+            .sch-time { width: 85px; font-size: 12px; }
+            .sch-venue { display: none; } /* 모바일 공간 부족 시 장소 숨김 */
             
             .logo { width: 95%; margin-bottom: 15px; }
             .date-double-line { font-size: 0.95rem; width: 95%; padding: 12px 0; margin-top: 15px; }
@@ -252,7 +332,7 @@
         </div>
     </div>
 
-    <div class="main-container">
+    <div class="main-container" id="mainContainer">
         <nav class="tab-menu">
             <button class="tab-btn active" onclick="openTab(event, 'intro')"> 인사말 </button>
             <button class="tab-btn" onclick="openTab(event, 'program')"> 프로그램 </button>
@@ -423,206 +503,191 @@
         <div id="timetable" class="tab-content">
             <h2 class="tab-title" style="margin-bottom:20px;">Official Schedule</h2>
             
-            <div class="day-group">
-                <div class="day-header">
-                    <span>2026-02-27 (Fri)</span>
-                    <span class="day-label">Day 1</span>
-                </div>
-                <div class="tt-row">
-                    <div class="tt-time">15:30 – 16:00</div>
-                    <div class="tt-content">Registration</div>
-                    <div class="tt-venue">비오토피아 입구</div>
-                </div>
-                <div class="tt-row">
-                    <div class="tt-time">16:00 – 17:00</div>
-                    <div class="tt-content">Welcome Reception (Standing)</div>
-                    <div class="tt-venue">연회장 포이어</div>
-                </div>
-                <div class="tt-row">
-                    <div class="tt-time">17:30 – 18:20</div>
-                    <div class="tt-content">Opening Speech</div>
-                    <div class="tt-venue">비오토피아 메인홀</div>
-                </div>
-                <div class="tt-row" style="background-color: #f4fbff;">
-                    <div class="tt-time">18:30 – 20:30</div>
-                    <div class="tt-content"><strong>Gala Dinner</strong></div>
-                    <div class="tt-venue">비오토피아 메인홀</div>
-                </div>
-                <div class="tt-row">
-                    <div class="tt-time">20:30 –</div>
-                    <div class="tt-content">Networking Night</div>
-                    <div class="tt-venue">타운하우스 (W22)</div>
-                </div>
-            </div>
-
-            <div class="day-group">
-                <div class="day-header">
-                    <span>2026-02-28 (Sat)</span>
-                    <span class="day-label">Day 2</span>
-                </div>
-                <div class="tt-row">
-                    <div class="tt-time">07:00 – 08:30</div>
-                    <div class="tt-content">조식</div>
-                    <div class="tt-venue">디아넥스 레스토랑</div>
-                </div>
+            <div class="sch-dashboard">
                 
-                <div class="tt-row">
-                    <div class="tt-time">09:00 – 10:00</div>
-                    <div class="tt-content">
-                        <span class="tt-title">SESSION 1: Financial Survival Strategy</span>
-                        <span class="tt-quote">"지금의 시장에서, 우리는 정말 '재무적으로 안전한 전략'을 가지고 있는가?"</span>
-                        <ul class="tt-list">
-                            <li><strong>Advanced IPO Roadmap:</strong> 상장 시점과 시장 선택의 영향</li>
-                            <li><strong>Runway & Dilution:</strong> 생존을 위한 Runway 확보와 지분 희석 간 균형</li>
-                        </ul>
+                <div class="sch-column">
+                    
+                    <div class="sch-day-header">
+                        <span>2026-02-27 (Fri)</span>
+                        <span class="day-label">Day 1</span>
                     </div>
-                    <div class="tt-venue">컨퍼런스룸</div>
-                </div>
-
-                <div class="tt-row">
-                    <div class="tt-time">10:00 – 11:00</div>
-                    <div class="tt-content">
-                        <span class="tt-title">SESSION 2: Creative Deal-Making</span>
-                        <span class="tt-quote">"딜은 자금을 가져오는 수단인가, 기업의 미래를 규정하는 결정인가?"</span>
-                        <ul class="tt-list">
-                            <li><strong>Strategic Structure:</strong> 파트너십을 통한 기업 가치 제고</li>
-                            <li><strong>Optionality:</strong> 불확실한 시장에서의 미래 선택지 확보 전략</li>
-                        </ul>
-                    </div>
-                    <div class="tt-venue">컨퍼런스룸</div>
-                </div>
-
-                <div class="tt-row" style="background-color:#f9f9f9;">
-                    <div class="tt-time" style="color:var(--accent)">11:00 – 11:20</div>
-                    <div class="tt-content">
-                        <span style="color:var(--accent); font-weight:bold;">☕ MORNING COFFEE BREAK</span><br>
-                        <span style="font-size:12px; color:#666;">Networking with Coffee & Cookies</span>
-                    </div>
-                    <div class="tt-venue">로비</div>
-                </div>
-
-                <div class="tt-row">
-                    <div class="tt-time">11:20 – 12:20</div>
-                    <div class="tt-content">
-                        <span class="tt-title">SESSION 3: Global Ops & Lean Team</span>
-                        <span class="tt-quote">"비대해진 조직, 어떻게 민첩한 실행 조직으로 탈바꿈할 것인가?"</span>
-                        <ul class="tt-list">
-                            <li><strong>Lean Global Team:</strong> 역량 중심의 초경량 글로벌 조직 운영</li>
-                            <li><strong>Execution Gap:</strong> 전략과 현장 사이의 실행력 누수 방지</li>
-                        </ul>
-                    </div>
-                    <div class="tt-venue">컨퍼런스룸</div>
-                </div>
-
-                <div class="tt-row" style="background-color:#f9f9f9;">
-                    <div class="tt-time" style="color:var(--accent)">12:20 – 13:30</div>
-                    <div class="tt-content">
-                        <span style="color:var(--accent); font-weight:bold;">🍽 LUNCHEON</span><br>
-                        <span style="font-size:12px; color:#666;">Networking Lunch</span>
-                    </div>
-                    <div class="tt-venue">디아넥스 레스토랑</div>
-                </div>
-
-                <div class="tt-row">
-                    <div class="tt-time">13:30 – 14:30</div>
-                    <div class="tt-content">
-                        <span class="tt-title">SESSION 4: AI as a Strategic Lever</span>
-                        
-                        <div style="margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px dashed #eee;">
-                            <span class="tt-track-tag bg-a">Track A: Tech-heavy</span>
-                            <span class="tt-quote">"AI는 '가능한 기술'인가, '현실에서 운영 가능한 시스템'인가?"</span>
-                            <ul class="tt-list">
-                                <li><strong>PoC Trap:</strong> 파일럿 단계에서 멈추는 기술·조직적 원인</li>
-                                <li><strong>Data Architecture:</strong> 성과를 좌우하는 데이터 구조와 품질</li>
-                                <li><strong>Sustainable AI:</strong> 유지 가능한 AI 시스템의 조건</li>
-                            </ul>
+                    <div class="sch-list">
+                        <div class="sch-row">
+                            <div class="sch-time">15:30 – 16:00</div>
+                            <div class="sch-content">Registration</div>
+                            <div class="sch-venue">비오토피아 입구</div>
                         </div>
-
-                        <div>
-                            <span class="tt-track-tag bg-b">Track B: Business-heavy</span>
-                            <span class="tt-quote">"AI는 생산성 도구인가, 경영 권한을 재편하는 전략 자산인가?"</span>
-                            <ul class="tt-list">
-                                <li><strong>Structural Impact:</strong> 조직 구조 변화를 요구하는 비용 절감</li>
-                                <li><strong>Leadership Frame:</strong> CEO의 판단 프레임으로서의 AI 전략</li>
-                                <li><strong>Business Cannibalization:</strong> 기존 사업 잠식 시의 선택</li>
-                            </ul>
+                        <div class="sch-row">
+                            <div class="sch-time">16:00 – 17:00</div>
+                            <div class="sch-content">Welcome Reception (Standing)</div>
+                            <div class="sch-venue">연회장 포이어</div>
+                        </div>
+                        <div class="sch-row">
+                            <div class="sch-time">17:10 – 18:20</div>
+                            <div class="sch-content">
+                                <span class="sch-title">Special Session · 자기소개</span>
+                            </div>
+                            <div class="sch-venue">메인홀</div>
+                        </div>
+                        <div class="sch-row highlight">
+                            <div class="sch-time">18:30 – 20:30</div>
+                            <div class="sch-content"><strong>만 찬 (Gala Dinner)</strong></div>
+                            <div class="sch-venue">메인홀</div>
+                        </div>
+                        <div class="sch-row">
+                            <div class="sch-time">20:30 –</div>
+                            <div class="sch-content">Networking Night</div>
+                            <div class="sch-venue">W22</div>
                         </div>
                     </div>
-                    <div class="tt-venue">컨퍼런스룸</div>
-                </div>
 
-                <div class="tt-row">
-                    <div class="tt-time">14:30 – 15:30</div>
-                    <div class="tt-content">
-                        <span class="tt-title">SESSION 5: Resilient Leadership</span>
-                        <span class="tt-quote">"답이 없는 상황에서, 리더는 무엇으로 조직을 이끄는가?"</span>
-                        <ul class="tt-list">
-                            <li><strong>The Weight of Decision:</strong> CEO의 결단과 멘탈 관리</li>
-                            <li><strong>Crisis Communication:</strong> 위기를 신뢰 자산으로 바꾸는 전략</li>
-                        </ul>
+                    <div class="sch-day-header">
+                        <span>2026-02-28 (Sat)</span>
+                        <span class="day-label">Day 2</span>
                     </div>
-                    <div class="tt-venue">컨퍼런스룸</div>
-                </div>
-
-                <div class="tt-row" style="background-color:#f9f9f9;">
-                    <div class="tt-time" style="color:var(--accent)">15:30 – 15:50</div>
-                    <div class="tt-content">
-                        <span style="color:var(--accent); font-weight:bold;">🍵 AFTERNOON REFRESH</span><br>
-                        <span style="font-size:12px; color:#666;">Energy Recharging Time</span>
+                    <div class="sch-list">
+                        <div class="sch-row">
+                            <div class="sch-time">07:00 – 08:30</div>
+                            <div class="sch-content">조식</div>
+                            <div class="sch-venue">디아넥스</div>
+                        </div>
+                        <div class="sch-row">
+                            <div class="sch-time">09:00 – 10:00</div>
+                            <div class="sch-content">
+                                <span class="sch-title">SESSION 1: Financial Survival Strategy</span>
+                                <span class="sch-quote">"지금의 시장에서, 우리는 정말 '재무적으로 안전한 전략'을 가지고 있는가?"</span>
+                            </div>
+                            <div class="sch-venue">컨퍼런스룸</div>
+                        </div>
+                        <div class="sch-row">
+                            <div class="sch-time">10:00 – 11:00</div>
+                            <div class="sch-content">
+                                <span class="sch-title">SESSION 2: Creative Deal-Making</span>
+                                <span class="sch-quote">"딜은 자금을 가져오는 수단인가, 기업의 미래를 규정하는 결정인가?"</span>
+                            </div>
+                            <div class="sch-venue">컨퍼런스룸</div>
+                        </div>
+                        <div class="sch-row break">
+                            <div class="sch-time" style="color:var(--accent)">11:00 – 11:20</div>
+                            <div class="sch-content">
+                                <span style="font-weight:bold; color:var(--accent); font-size:12px;">☕ MORNING COFFEE BREAK</span>
+                            </div>
+                            <div class="sch-venue">로비</div>
+                        </div>
+                        <div class="sch-row">
+                            <div class="sch-time">11:20 – 12:20</div>
+                            <div class="sch-content">
+                                <span class="sch-title">SESSION 3: Global Ops & Lean Team</span>
+                                <span class="sch-quote">"비대해진 조직, 어떻게 민첩한 실행 조직으로 탈바꿈할 것인가?"</span>
+                            </div>
+                            <div class="sch-venue">컨퍼런스룸</div>
+                        </div>
                     </div>
-                    <div class="tt-venue">로비</div>
+
                 </div>
 
-                <div class="tt-row">
-                    <div class="tt-time">15:50 – 16:50</div>
-                    <div class="tt-content">
-                        <span class="tt-title">SESSION 6: Human Capital (CEO-Focused)</span>
-                        <span class="tt-quote">"사람을 지키는 결정과 회사를 살리는 결정은 언제 충돌하는가?"</span>
-                        <ul class="tt-list">
-                            <li><strong>Survival vs. Loyalty:</strong> 조직 생존과 의리가 충돌하는 순간</li>
-                            <li><strong>Key Talent Dilemma:</strong> 핵심 인재 보호가 조직을 흔들 때</li>
-                            <li><strong>Culture Breakdown:</strong> 성과보다 문화가 먼저 무너지는 시점</li>
-                            <li><strong>Irreversible Decisions:</strong> 사람에 대한 결정이 전략이 되는 순간</li>
-                        </ul>
+                <div class="sch-column">
+                    
+                    <div class="sch-day-header continued">
+                        <span>2026-02-28 (Sat)</span>
+                        <span class="day-label">Day 2 (Cont.)</span>
                     </div>
-                    <div class="tt-venue">컨퍼런스룸</div>
-                </div>
+                    
+                    <div class="sch-list">
+                        <div class="sch-row break">
+                            <div class="sch-time" style="color:var(--accent)">12:20 – 13:30</div>
+                            <div class="sch-content">
+                                <span style="font-weight:bold; color:var(--accent); font-size:12px;">🍽 LUNCHEON (Networking Lunch)</span>
+                            </div>
+                            <div class="sch-venue">디아넥스</div>
+                        </div>
 
-                <div class="tt-row">
-                    <div class="tt-time">16:50 – 17:00</div>
-                    <div class="tt-content"><strong>Closing & Wrap-up</strong></div>
-                    <div class="tt-venue">컨퍼런스룸</div>
-                </div>
+                        <div class="sch-row">
+                            <div class="sch-time">13:30 – 14:30</div>
+                            <div class="sch-content">
+                                <span class="sch-title">SESSION 4: AI as a Strategic Lever</span>
+                                
+                                <div class="sch-track">
+                                    <span class="track-badge tb-a">Track A</span>
+                                    <span class="sch-quote" style="margin-top:2px;">"AI는 '가능한 기술'인가, '현실에서 운영 가능한 시스템'인가?"</span>
+                                </div>
+                                <div class="sch-track">
+                                    <span class="track-badge tb-b">Track B</span>
+                                    <span class="sch-quote" style="margin-top:2px;">"AI는 생산성 도구인가, 경영 권한을 재편하는 전략 자산인가?"</span>
+                                </div>
+                            </div>
+                            <div class="sch-venue">컨퍼런스룸</div>
+                        </div>
 
-                <div class="tt-row">
-                    <div class="tt-time">18:00 –</div>
-                    <div class="tt-content">Dinner & After Gathering</div>
-                    <div class="tt-venue">(추후 안내) / W22</div>
+                        <div class="sch-row">
+                            <div class="sch-time">14:30 – 15:30</div>
+                            <div class="sch-content">
+                                <span class="sch-title">SESSION 5: Resilient Leadership</span>
+                                <span class="sch-quote">"답이 없는 상황에서, 리더는 무엇으로 조직을 이끄는가?"</span>
+                            </div>
+                            <div class="sch-venue">컨퍼런스룸</div>
+                        </div>
+
+                        <div class="sch-row break">
+                            <div class="sch-time" style="color:var(--accent)">15:30 – 15:50</div>
+                            <div class="sch-content">
+                                <span style="font-weight:bold; color:var(--accent); font-size:12px;">🍵 AFTERNOON REFRESH</span>
+                            </div>
+                            <div class="sch-venue">로비</div>
+                        </div>
+
+                        <div class="sch-row">
+                            <div class="sch-time">15:50 – 16:50</div>
+                            <div class="sch-content">
+                                <span class="sch-title">SESSION 6: Human Capital (CEO-Focused)</span>
+                                <span class="sch-quote">"사람을 지키는 결정과 회사를 살리는 결정은 언제 충돌하는가?"</span>
+                            </div>
+                            <div class="sch-venue">컨퍼런스룸</div>
+                        </div>
+
+                        <div class="sch-row">
+                            <div class="sch-time">16:50 – 17:00</div>
+                            <div class="sch-content">
+                                <strong>Closing & Wrap-up</strong>
+                            </div>
+                            <div class="sch-venue">컨퍼런스룸</div>
+                        </div>
+
+                        <div class="sch-row">
+                            <div class="sch-time">18:00 –</div>
+                            <div class="sch-content">Dinner & Post-event Gathering</div>
+                            <div class="sch-venue">포도호텔/W22</div>
+                        </div>
+                    </div>
+
+                    <div class="sch-day-header">
+                        <span>2026-03-01 (Sun)</span>
+                        <span class="day-label">Day 3</span>
+                    </div>
+                    <div class="sch-list">
+                        <div class="sch-row">
+                            <div class="sch-time">07:00 – 08:30</div>
+                            <div class="sch-content">조식</div>
+                            <div class="sch-venue">디아넥스</div>
+                        </div>
+                        <div class="sch-row">
+                            <div class="sch-time">09:00 – 12:00</div>
+                            <div class="sch-content">Morning Activity</div>
+                            <div class="sch-venue">(추후 안내)</div>
+                        </div>
+                        <div class="sch-row">
+                            <div class="sch-time">12:00 –</div>
+                            <div class="sch-content">개별 귀가</div>
+                            <div class="sch-venue">-</div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-
-            <div class="day-group">
-                <div class="day-header">
-                    <span>2026-03-01 (Sun)</span>
-                    <span class="day-label">Day 3</span>
-                </div>
-                <div class="tt-row">
-                    <div class="tt-time">07:00 – 08:30</div>
-                    <div class="tt-content">조식 (Breakfast)</div>
-                    <div class="tt-venue">디아넥스 레스토랑</div>
-                </div>
-                <div class="tt-row">
-                    <div class="tt-time">09:00 – 12:00</div>
-                    <div class="tt-content">Morning Activity</div>
-                    <div class="tt-venue">(추후 안내)</div>
-                </div>
-                <div class="tt-row">
-                    <div class="tt-time">12:00 –</div>
-                    <div class="tt-content">개별 귀가</div>
-                    <div class="tt-venue">-</div>
-                </div>
+            
+            <div class="footer-info" style="margin-top:0; border-top:none;">
+                <p>※ 상기 일정 및 연사는 주최 측 사정에 따라 일부 변경될 수 있습니다.</p>
             </div>
-
         </div>
 
     </div>
@@ -640,6 +705,15 @@
                 tablinks[i].className = tablinks[i].className.replace(" active", "");
             }
             document.getElementById(tabName).style.display = "block";
+            
+            // 일정표 탭일 경우 컨테이너를 더 넓게 조정
+            var container = document.getElementById("mainContainer");
+            if(tabName === 'timetable') {
+                container.classList.add("wide-mode");
+            } else {
+                container.classList.remove("wide-mode");
+            }
+
             setTimeout(() => {
                 document.getElementById(tabName).classList.add("active");
             }, 10);
