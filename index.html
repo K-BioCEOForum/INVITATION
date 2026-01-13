@@ -9,21 +9,21 @@
         /* [스타일 설정] 기본 변수 */
         :root {
             --primary: #1a1a1a;
-            --secondary: #2c5f4f; /* Main Teal (Intro용) */
-            --accent: #d4af37;     /* Gold (Intro용) */
+            --secondary: #2c5f4f; /* Main Teal (타이틀용 짙은 녹색) */
+            --accent: #d4af37;     /* Gold (서브타이틀용) */
             --light: #f8f6f1;
             --white: #ffffff;
             --gray: #666666;
         }
 
-        /* [원본 파일 색상 변수] */
+        /* [추가 색상 변수] */
         :root {
             /* Program 탭 색상 */
             --prog-blue: #4D8DF5;
             --prog-green: #85AC0D;
             --prog-dark-green: #4B5D16;
             --prog-badge-default: #93B5E1;
-            --prog-title-custom: #7ABA38; /* 보내주신 스크린샷 색상 적용 */
+            --prog-quote-color: #7ABA38; /* 요청하신 문구 색상 (연두) */
             
             /* Schedule 탭 색상 */
             --sch-teal: #0F6B7E;
@@ -139,9 +139,9 @@
         }
 
         /* [Program 탭 스타일] */
-        /* 타이틀 색상을 보내주신 연두색으로 변경 */
-        #program h2.tab-title { color: var(--prog-title-custom); } 
-        #program .tab-subtitle { color: #555; }
+        /* 타이틀: 짙은 녹색, 서브타이틀: 골드 */
+        #program h2.tab-title { color: var(--secondary); } 
+        #program .tab-subtitle { color: var(--accent); }
         
         .prog-table { width: 100%; border-collapse: collapse; }
         .prog-row { border-bottom: 1px solid #eee; }
@@ -172,10 +172,10 @@
             font-size: 20px; font-weight: 700; margin-bottom: 8px; color: #222;
         }
         
-        /* 세션 설명 문구 파란색 유지 */
+        /* [수정됨] 세션 문구 색상: #7ABA38 적용 */
         .session-desc {
             font-size: 16px; 
-            color: var(--prog-blue); 
+            color: var(--prog-quote-color); 
             font-weight: 600;
             margin-bottom: 12px; line-height: 1.5;
         }
@@ -225,7 +225,7 @@
         }
 
         .sch-day-header.continued {
-            /* [수정됨] 그라데이션 방향 정방향으로 통일 */
+            /* [수정됨] 그라데이션 정방향으로 통일 (Teal -> Green) */
             background: linear-gradient(90deg, var(--sch-gradient-start) 0%, var(--sch-gradient-end) 100%);
             opacity: 0.95;
         }
