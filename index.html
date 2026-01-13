@@ -4,17 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Korea Biotech CEO Forum 2026</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         /* [스타일 설정] 변수 및 기본 설정 */
         :root {
             --primary: #1a1a1a;
-            --secondary: #2c5f4f;
-            --accent: #d4af37;
+            --secondary: #2c5f4f; /* Main Teal */
+            --secondary-light: #3d7a68;
+            --accent: #d4af37;     /* Gold */
             --light: #f8f6f1;
             --white: #ffffff;
             --gray: #666666;
-            --tab-active: #006c8a;
+            --bg-gray: #f9f9f9;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -27,23 +28,16 @@
             overflow-x: hidden;
         }
 
-        /* [Hero 섹션] 상단 타이틀 영역 */
+        /* [Hero 섹션] */
         .hero {
-            /* 기본(PC) 높이 */
             min-height: 80vh;
             background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5f4f 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+            position: relative; overflow: hidden;
         }
 
         .hero::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
+            content: ''; position: absolute; width: 200%; height: 200%;
             background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
             animation: rotate 30s linear infinite;
         }
@@ -52,73 +46,43 @@
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
 
         .hero-content {
-            text-align: center;
-            color: var(--white);
-            z-index: 1;
-            padding: 2rem;
-            animation: fadeInUp 1.2s ease-out;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            text-align: center; color: var(--white); z-index: 1; padding: 2rem;
+            animation: fadeInUp 1.2s ease-out; width: 100%;
+            display: flex; flex-direction: column; align-items: center;
         }
 
         .logo {
-            max-width: 850px;
-            width: 85%;
-            height: auto;
-            display: block;
+            max-width: 850px; width: 85%; height: auto; display: block;
             margin-bottom: 10px;
             filter: drop-shadow(0 12px 24px rgba(0,0,0,0.35)); 
-            transform: translateZ(0);
         }
 
-        /* [수정됨] 9번 스타일: Date 텍스트 제거 및 전체 노란색 적용 */
         .date-double-line {
-            margin-top: 25px;
-            padding: 15px 0;
+            margin-top: 25px; padding: 15px 0;
             border-top: 1px solid rgba(255,255,255,0.2);
             border-bottom: 1px solid rgba(255,255,255,0.2);
-            width: 100%;
-            max-width: 480px; 
-            
-            /* 텍스트 색상을 노란색(accent)으로 변경 */
-            color: var(--accent); 
-            font-weight: 500;
-            font-size: 1.2rem;
-            letter-spacing: 0.03em;
-            word-break: keep-all;
+            width: 100%; max-width: 480px; 
+            color: var(--accent); font-weight: 500; font-size: 1.2rem;
+            letter-spacing: 0.03em; word-break: keep-all;
         }
 
         /* [메인 컨테이너 및 탭] */
         .main-container {
-            max-width: 900px;
-            margin: -50px auto 50px;
-            position: relative;
-            background: var(--white);
-            border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            overflow: hidden;
-            z-index: 10;
+            max-width: 900px; margin: -50px auto 50px;
+            position: relative; background: var(--white);
+            border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            overflow: hidden; z-index: 10;
         }
 
         .tab-menu {
-            display: flex;
-            border-bottom: 1px solid #eee;
-            background: #fff;
+            display: flex; border-bottom: 1px solid #eee; background: #fff;
         }
 
         .tab-btn {
-            flex: 1;
-            padding: 20px;
-            text-align: center;
-            background: none;
-            border: none;
-            font-size: 18px;
-            font-weight: 600;
-            cursor: pointer;
-            color: #888;
-            transition: 0.3s;
+            flex: 1; padding: 20px; text-align: center;
+            background: none; border: none;
+            font-size: 18px; font-weight: 600; cursor: pointer;
+            color: #888; transition: 0.3s;
             font-family: 'Noto Sans KR', sans-serif;
         }
 
@@ -130,124 +94,150 @@
         }
 
         .tab-content {
-            display: none;
-            padding: 40px;
+            display: none; padding: 40px;
             animation: fadeIn 0.5s ease-out;
         }
         .tab-content.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* [컨텐츠 스타일] */
+        /* [콘텐츠 공통 스타일] */
+        h2.tab-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 28px; font-weight: 700;
+            color: var(--secondary); margin-bottom: 10px;
+            line-height: 1.2;
+        }
+        .tab-subtitle {
+            font-family: 'Outfit', sans-serif;
+            font-size: 16px; color: var(--accent);
+            font-weight: 600; margin-bottom: 30px; display: block;
+        }
+
+        /* [Intro 탭] */
         .intro-text p { margin-bottom: 1.5rem; text-align: justify; color: var(--gray); }
-        
         .intro-highlight {
-            background-color: rgba(44, 95, 79, 0.05);
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
-            font-weight: 500;
-            color: var(--secondary);
-            line-height: 1.8;
+            background-color: rgba(44, 95, 79, 0.05); padding: 20px;
+            border-radius: 8px; margin: 20px 0; font-weight: 500;
+            color: var(--secondary); line-height: 1.8;
             border-left: 4px solid var(--secondary);
         }
 
-        .schedule-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
-        .schedule-row { border-bottom: 1px solid #eee; }
-        .schedule-row:last-child { border-bottom: none; }
+        /* [Program 탭 (New Nature Style)] */
+        .prog-table { width: 100%; border-collapse: collapse; }
+        .prog-row { border-bottom: 1px solid #eee; }
+        .prog-row:last-child { border-bottom: none; }
         
-        .time-col {
-            width: 30%;
-            background-color: #f9f9f9;
-            padding: 20px;
-            font-weight: 600;
-            vertical-align: top;
-            color: var(--secondary);
-            font-family: 'Outfit', sans-serif;
+        .prog-time {
+            width: 130px; padding: 30px 20px 30px 0;
+            text-align: right; vertical-align: top;
+            font-family: 'Outfit', sans-serif; font-weight: 600;
+            color: var(--secondary); font-size: 15px;
+            border-right: 2px solid #f0f0f0;
         }
         
-        .content-col { padding: 20px; width: 70%; }
-        
-        .theme-tag {
-            display: inline-block;
-            background-color: var(--secondary);
-            color: white;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 12px;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
+        .prog-content { padding: 30px 0 30px 30px; vertical-align: top; }
 
-        .discussion-points {
-            margin: 0;
-            padding-left: 20px;
+        .session-badge {
+            display: inline-block; padding: 3px 10px;
+            background: rgba(44, 95, 79, 0.1); color: var(--secondary);
+            font-size: 11px; font-weight: 700; border-radius: 20px;
+            margin-bottom: 8px; font-family: 'Outfit', sans-serif;
+            text-transform: uppercase; letter-spacing: 0.5px;
         }
-        .discussion-points li {
-            margin-bottom: 5px;
-            color: #555;
-            font-size: 15px;
-        }
+        .session-badge.track-a { background: #e3f2fd; color: #1565c0; }
+        .session-badge.track-b { background: #f1f8e9; color: #558b2f; }
 
+        .session-title {
+            font-size: 20px; font-weight: 700; margin-bottom: 8px; color: #222;
+        }
+        .session-desc {
+            font-size: 16px; color: var(--secondary); font-weight: 600;
+            margin-bottom: 12px; line-height: 1.5;
+        }
+        .session-context {
+            font-size: 14px; color: #666; line-height: 1.6;
+            margin-bottom: 15px; background-color: #fafafa;
+            padding: 12px; border-radius: 6px; border-left: 2px solid #ddd;
+        }
+        .bullet-list { margin: 0; padding-left: 18px; font-size: 14px; color: #555; }
+        .bullet-list li { margin-bottom: 6px; }
+        .bullet-list strong { color: var(--secondary); font-weight: 700; }
+
+        .break-row { background-color: #fafafa; }
+        .break-title {
+            font-family: 'Outfit', sans-serif; font-weight: 700;
+            color: var(--accent); text-transform: uppercase; letter-spacing: 1px;
+            font-size: 14px; display: flex; align-items: center;
+        }
+        .track-separator { margin: 25px 0; border-bottom: 1px dashed #ddd; }
+
+        /* [Time Table 탭 (New Schedule Style)] */
+        .day-header {
+            background: linear-gradient(90deg, var(--secondary) 0%, var(--secondary-light) 100%);
+            color: white; padding: 10px 20px; font-size: 16px; font-weight: bold;
+            border-radius: 6px; margin-top: 30px; margin-bottom: 10px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .day-header:first-child { margin-top: 0; }
+        .day-label { opacity: 0.8; font-size: 0.9em; font-family: 'Outfit', sans-serif; }
+
+        .tt-row {
+            display: flex; padding: 15px; border-bottom: 1px solid #eee; align-items: flex-start;
+        }
+        .tt-row:last-child { border-bottom: none; }
+        
+        .tt-time {
+            width: 100px; font-weight: 700; color: #444; font-size: 13px;
+            flex-shrink: 0; padding-top: 2px; font-family: 'Outfit', sans-serif;
+        }
+        .tt-content { flex-grow: 1; font-size: 14px; color: #222; }
+        .tt-venue {
+            width: 110px; text-align: right; font-size: 12px;
+            color: var(--secondary); font-weight: 600; flex-shrink: 0; padding-top: 2px;
+        }
+        .tt-title { font-weight: 800; color: var(--secondary); display: block; margin-bottom: 4px; }
+        .tt-quote {
+            display: block; font-size: 12px; color: #666; font-style: italic;
+            margin-bottom: 8px; background-color: #f4f4f4; padding: 6px 10px;
+            border-radius: 4px; border-left: 3px solid var(--accent);
+        }
+        .tt-list { margin: 0; padding-left: 15px; font-size: 13px; color: #555; }
+        .tt-list li { margin-bottom: 3px; }
+        
+        .tt-track-tag {
+            display: inline-block; font-size: 10px; font-weight: bold;
+            padding: 2px 6px; border-radius: 3px; margin-bottom: 4px; margin-top: 5px; color: #fff;
+        }
+        .bg-a { background-color: #5c6bc0; }
+        .bg-b { background-color: #66bb6a; }
+
+        /* Footer Info */
         .footer-info {
-            margin-top: 50px;
-            padding-top: 30px;
-            border-top: 1px solid #eee;
-            font-size: 14px;
-            color: #555;
-            text-align: left;
+            margin-top: 50px; padding-top: 30px; border-top: 1px solid #eee;
+            font-size: 14px; color: #555; text-align: left;
         }
         .footer-info p { margin: 8px 0; }
         .footer-info strong { color: var(--secondary); }
-        
-        .contact-pill {
-            display: inline-block;
-            background-color: rgba(44, 95, 79, 0.05); 
-            color: var(--secondary) !important;
-            border: 1px solid var(--secondary);
-            padding: 2px 10px; 
-            border-radius: 15px; 
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 13px;
-            margin-left: 5px;
-            vertical-align: middle;
-            transition: all 0.2s ease;
-        }
-        .contact-pill:hover {
-            background-color: var(--secondary);
-            color: #ffffff !important;
-            transform: translateY(-2px);
-        }
 
-        /* [반응형 미디어 쿼리] */
+        /* [반응형] */
         @media (max-width: 768px) {
-            .hero {
-                min-height: 40vh; 
-                padding-bottom: 30px; 
-            }
-
-            .main-container { margin: -30px 15px 30px 15px; border-radius: 12px; }
-            .time-col { width: 100%; display: block; background: #f4f4f4; border-bottom: none; padding-bottom: 5px; }
-            .content-col { width: 100%; display: block; padding-top: 5px; }
-            .tab-btn { padding: 15px; font-size: 16px; }
+            .hero { min-height: 40vh; padding-bottom: 30px; }
+            .main-container { margin: -30px 15px 30px 15px; }
+            .tab-btn { padding: 15px; font-size: 15px; }
+            .tab-content { padding: 20px; }
             
-            .logo {
-                width: 95%; 
-                margin-bottom: 15px;
-            }
-
-            .date-double-line {
-                font-size: 0.95rem; 
-                width: 95%; 
-                padding: 12px 0;
-                margin-top: 15px;
-            }
+            /* Program Mobile */
+            .prog-time { width: 100%; border-right: none; padding: 10px 0 5px 0; border-bottom: 1px dashed #eee; display: block; color: var(--accent); }
+            .prog-content { padding: 10px 0 30px 0; display: block; width: 100%; }
             
-            .tab-content { padding: 25px; }
+            /* TimeTable Mobile */
+            .tt-row { flex-wrap: wrap; }
+            .tt-time { width: 100%; margin-bottom: 5px; color: var(--accent); }
+            .tt-venue { width: 100%; text-align: left; margin-top: 5px; color: #888; font-size: 11px; }
+            .tt-content { width: 100%; }
+            
+            .logo { width: 95%; margin-bottom: 15px; }
+            .date-double-line { font-size: 0.95rem; width: 95%; padding: 12px 0; margin-top: 15px; }
         }
     </style>
 </head>
@@ -265,29 +255,23 @@
     <div class="main-container">
         <nav class="tab-menu">
             <button class="tab-btn active" onclick="openTab(event, 'intro')"> 인사말 </button>
-            <button class="tab-btn" onclick="openTab(event, 'schedule')"> 프로그램 </button>
+            <button class="tab-btn" onclick="openTab(event, 'program')"> 프로그램 </button>
+            <button class="tab-btn" onclick="openTab(event, 'timetable')"> 일정표 </button>
         </nav>
 
         <div id="intro" class="tab-content active">
             <div class="intro-text">
                 <p>한국 바이오 산업은 지난 수십 년간 연구개발 역량의 축적과 지속적인 사업 확장을 통해 글로벌 시장에서 점차 의미 있는 위치를 확대하고 있습니다.</p>
-                
                 <p>다만 산업의 외형적 성장과는 달리, 바이오 기업을 이끌어가는 리더들에게는 사업과 기술, 조직과 자본에 대한 현실적인 고민을 허심탄회하게 나눌 수 있는 환경은 여전히 제한적인 것이 현실입니다.</p>
-                
                 <p>이에 미국의 Biotech CEO Forum에 영감을 얻어, 한국 바이오 산업의 CEO 및 주요 리더들을 위한 <strong>채텀하우스룰·비공개·초청형 포럼</strong>을 새로운 형식으로 시작하고자 합니다.</p>
-
                 <p>예를 들어 <strong>Laguna CEO Forum</strong>은 30년 이상 유지되어 온 미국 바이오 업계의 대표적인 CEO 포럼으로, 공개 행사나 마케팅 목적의 컨퍼런스와는 달리 초청된 CEO들만이 참여하는 클로즈드 포럼으로 운영되어 왔습니다.</p>
-                
                 <p>이 포럼은 기술과 사업의 단기 이슈를 넘어, 산업이 직면한 구조적 과제와 중·장기 전략을 신뢰를 전제로 논의하는 기능을 해왔습니다. 실제로 Roche의 Genentech 인수 논의를 비롯해, 다수의 전략적 파트너십과 인수·합병이 공식 무대가 아닌 비공식적인 대화 속에서 시작되었습니다.</p>
-
                 <div class="intro-highlight">
                     이번 Korea Biotech CEO Forum은 채텀하우스룰 원칙을 반영하여, 발표 중심의 프로그램이나 외부 노출 없이, 제주라는 일상에서 벗어난 공간에서 바이오 산업의 현재와 미래에 대해 실질적인 의견 교환이 이루어질 수 있도록 구성됩니다.
                 </div>
-                
                 <p>업계를 대표하는 연사 및 패널들과의 논의와 함께, 참석자 상호 간의 경험 공유와 신뢰 형성을 통해 서로에게 실무적으로도 실질적인 도움이 되는 통찰과 관계를 만들어가는 의미있는 모임이 되기를 기대합니다.</p>
-
                 <p style="color: var(--secondary); font-size: 0.9em; margin-top: 20px;">* 본 포럼은 초청된 분들만을 대상으로 진행되는 프라이빗 포럼이며, 포럼의 취지와 운영 원칙을 유지하기 위해 초청의 양도는 어려운 점 양해 부탁드립니다.</p>
-
+                
                 <div class="footer-info">
                     <p><strong>일시</strong> 2026년 2월 27일(금) - 3월 1일(일)</p>
                     <p><strong>장소</strong> 디아넥스호텔 . 비오토피아 (제주)</p>
@@ -297,80 +281,350 @@
             </div>
         </div>
 
-        <div id="schedule" class="tab-content">
-            <h2 style="color: var(--secondary); margin-bottom: 20px;">Program Overview</h2>
-            <table class="schedule-table">
-                <tr class="schedule-row">
-                    <td class="time-col">Session 1<br>Financial Survival Strategy</td>
-                    <td class="content-col">
-                        <span class="theme-tag">Capital</span> <span class="theme-tag" style="background-color: var(--gray)">IPO, Market Truth</span>
-                        <ul class="discussion-points">
-                            <li>The Great Reset</li>
-                            <li>Runway Management & Dilution Strategy</li>
-                            <li>Alternative Financing</li>
-                            <li>KOSDAQ vs. NASDAQ</li>
+        <div id="program" class="tab-content">
+            <h2 class="tab-title">The Great Reset: Strategy, Structure, and Leadership</h2>
+            <span class="tab-subtitle">Designing the Next Corporate Reality in the Age of Uncertainty</span>
+            
+            <table class="prog-table">
+                <tr class="prog-row">
+                    <td class="prog-time">09:00 - 10:00</td>
+                    <td class="prog-content">
+                        <span class="session-badge">Session 1</span>
+                        <div class="session-title">Financial Survival Strategy</div>
+                        <div class="session-desc">"지금의 시장에서, 우리는 정말 ‘재무적으로 안전한 전략’을 가지고 있는가?"</div>
+                        <ul class="bullet-list">
+                            <li><strong>The Great Reset & Market Truth:</strong> 변화된 자본 시장의 구조적 현실과 투자자의 새로운 요구 사항</li>
+                            <li><strong>Advanced IPO Roadmap:</strong> 상장 시점과 시장 선택이 기업 운명에 미치는 영향</li>
+                            <li><strong>Runway & Dilution:</strong> 생존을 위한 Runway 확보와 주주 가치 희석(Dilution) 간의 정교한 균형점 찾기</li>
                         </ul>
                     </td>
                 </tr>
-                <tr class="schedule-row">
-                    <td class="time-col">Session 2<br>Creative Deal-Making</td>
-                    <td class="content-col">
-                        <span class="theme-tag">Deal-Making</span> <span class="theme-tag" style="background-color: var(--gray)">Capital, Transformation</span>
-                        <ul class="discussion-points">
-                            <li>Partnering as Fundraising</li>
-                            <li>Cross-border Deals</li>
-                            <li>Control & Optionality</li>
+                <tr class="prog-row">
+                    <td class="prog-time">10:00 - 11:00</td>
+                    <td class="prog-content">
+                        <span class="session-badge">Session 2</span>
+                        <div class="session-title">Creative Deal-Making</div>
+                        <div class="session-desc">"딜은 자금을 가져오는 수단인가, 기업의 미래를 규정하는 결정인가?"</div>
+                        <ul class="bullet-list">
+                            <li><strong>Strategic Structure:</strong> 파트너십을 단순 계약이 아닌, 기업 가치를 높이는 구조로 설계하는 법</li>
+                            <li><strong>Cross-border Dynamics:</strong> 국경을 넘는 딜에서 발생하는 리스크와 기회의 역학 관계</li>
+                            <li><strong>Optionality:</strong> 불확실한 시장 상황에서 기업의 생존을 위한 다양한 미래 선택지 확보 전략</li>
                         </ul>
                     </td>
                 </tr>
-                <tr class="schedule-row">
-                    <td class="time-col">Session 3<br>Global Ops & Lean Team</td>
-                    <td class="content-col">
-                        <span class="theme-tag">Operations</span> <span class="theme-tag" style="background-color: var(--gray)">Leadership, Resilience</span>
-                        <ul class="discussion-points">
-                            <li>Doing more with less</li>
-                            <li>Global Talent Deployment</li>
-                            <li>Generational & Cultural Gaps</li>
-                            <li>From Global Clinical Strategy to Commercial Execution</li>
+                <tr class="prog-row break-row">
+                    <td class="prog-time" style="color:var(--accent)">11:00 - 11:20</td>
+                    <td class="prog-content">
+                        <div class="break-title"><span style="margin-right:8px; font-size:16px;">☕</span> Morning Coffee Break</div>
+                        <div style="margin-top:5px; font-size:14px; color:#666;">Networking with Coffee & Cookies</div>
+                    </td>
+                </tr>
+                <tr class="prog-row">
+                    <td class="prog-time">11:20 - 12:20</td>
+                    <td class="prog-content">
+                        <span class="session-badge">Session 3</span>
+                        <div class="session-title">Global Ops & Lean Team Excellence</div>
+                        <div class="session-desc">"비대해진 조직, 어떻게 민첩한 실행 조직으로 탈바꿈할 것인가?"</div>
+                        <ul class="bullet-list">
+                            <li><strong>Lean Global Team:</strong> 지역적 한계를 넘어선 역량 중심의 초경량 글로벌 조직 운영 모델</li>
+                            <li><strong>Transition Management:</strong> 연구 개발(R&D) 중심 조직에서 상업화 및 비즈니스 중심 조직으로의 전환 전략</li>
+                            <li><strong>Execution Gap:</strong> 전략과 현장 사이의 실행력 누수를 막는 오퍼레이션 최적화</li>
                         </ul>
                     </td>
                 </tr>
-                <tr class="schedule-row">
-                    <td class="time-col">Session 4<br>Strategic Pivot & Regulation</td>
-                    <td class="content-col">
-                        <span class="theme-tag">Transformation</span> <span class="theme-tag" style="background-color: var(--gray)">Market Truth, Operations</span>
-                        <ul class="discussion-points">
-                            <li>New Government Dynamics</li>
-                            <li>Turning Adversity into Advantage</li>
-                            <li>Policy & Regulatory Shifts</li>
-                            <li>Ecosystem Thinking & Long-Term Sustainability</li>
+                <tr class="prog-row break-row">
+                    <td class="prog-time" style="color:var(--accent)">12:20 - 13:30</td>
+                    <td class="prog-content">
+                        <div class="break-title"><span style="margin-right:8px; font-size:16px;">🍽️</span> Luncheon</div>
+                        <div style="margin-top:5px; font-size:14px; color:#666;">Networking Lunch at The Annex Restaurant</div>
+                    </td>
+                </tr>
+                <tr class="prog-row">
+                    <td class="prog-time">13:30 - 14:30</td>
+                    <td class="prog-content">
+                        <span class="session-badge track-a">Session 4-A</span>
+                        <div class="session-title">AI as a Strategic Lever <span style="font-weight:400; font-size:0.8em; color:#666;">(Tech-heavy Track)</span></div>
+                        <div class="session-desc">"AI는 ‘가능한 기술’인가, ‘현실에서 운영 가능한 시스템’인가?"</div>
+                        <div class="session-context">
+                            본 트랙은 AI를 개념이나 트렌드가 아닌, 실제로 구축·운영하며 실패와 한계를 경험한 기술 관점에서 다룹니다. AI가 왜 PoC를 넘지 못하는지, 어디서 구조적으로 무너지는지를 짚습니다.
+                        </div>
+                        <ul class="bullet-list">
+                            <li><strong>PoC Trap:</strong> AI 프로젝트가 파일럿 단계에서 멈추는 기술·조직적 원인</li>
+                            <li><strong>Data Architecture:</strong> 모델 성능보다 성과를 좌우하는 데이터 구조와 품질의 현실</li>
+                            <li><strong>Tech–Business Friction:</strong> 기술 조직과 현업 조직이 충돌하는 지점과 책임의 공백</li>
+                            <li><strong>Build vs. Buy:</strong> 내부 구축과 외부 솔루션 선택을 가르는 현실적 판단 기준</li>
+                            <li><strong>Sustainable AI:</strong> ‘작동하는 데모’가 아닌, 유지 가능한 AI 시스템의 조건</li>
+                        </ul>
+
+                        <div class="track-separator"></div>
+
+                        <span class="session-badge track-b">Session 4-B</span>
+                        <div class="session-title">AI as a Strategic Lever <span style="font-weight:400; font-size:0.8em; color:#666;">(Business-heavy Track)</span></div>
+                        <div class="session-desc">"AI는 생산성 도구인가, 경영 권한을 재편하는 전략 자산인가?"</div>
+                        <div class="session-context">
+                            본 트랙은 AI를 기술이 아닌 경영 의사결정 구조와 책임 체계를 흔드는 전략 변수로 다룹니다. AI 도입이 조직과 리더십에 요구하는 선택을 정면으로 다룹니다.
+                        </div>
+                        <ul class="bullet-list">
+                            <li><strong>Structural Impact:</strong> AI 도입이 비용 절감을 넘어 조직 구조 변화를 요구하는 순간</li>
+                            <li><strong>Decision Boundary:</strong> AI가 개입할 수 있는 의사결정 영역과 인간의 역할 경계</li>
+                            <li><strong>Leadership Frame:</strong> AI 전략은 IT 로드맵이 아닌 CEO의 판단 프레임이라는 관점</li>
+                            <li><strong>Failure Ownership:</strong> AI 실패의 책임은 기술에 있는가, 리더십에 있는가?</li>
+                            <li><strong>Business Cannibalization:</strong> AI가 기존 사업을 잠식할 때 CEO가 내려야 하는 선택</li>
                         </ul>
                     </td>
                 </tr>
-                <tr class="schedule-row">
-                    <td class="time-col">Session 5<br>Resilient Leadership</td>
-                    <td class="content-col">
-                        <span class="theme-tag">Leadership</span> <span class="theme-tag" style="background-color: var(--gray)">CEO Burden, Resilience</span>
-                        <ul class="discussion-points">
-                            <li>Leading Executives</li>
-                            <li>Decision-making under Ambiguity</li>
-                            <li>CEO Mental Health</li>
+                <tr class="prog-row">
+                    <td class="prog-time">14:30 - 15:30</td>
+                    <td class="prog-content">
+                        <span class="session-badge">Session 5</span>
+                        <div class="session-title">Resilient Leadership</div>
+                        <div class="session-desc">"답이 없는 상황에서, 리더는 무엇으로 조직을 이끄는가?"</div>
+                        <ul class="bullet-list">
+                            <li><strong>The Weight of Decision:</strong> 불확실성 속에서 내려야 하는 CEO의 고독한 결단과 멘탈 관리</li>
+                            <li><strong>Trust Building:</strong> 구성원의 기대와 회사의 냉혹한 현실 사이의 간극을 좁히는 투명한 소통</li>
+                            <li><strong>Crisis Communication:</strong> 위기를 기회로, 불신을 신뢰 자산으로 바꾸는 리더의 메시지 전략</li>
                         </ul>
                     </td>
                 </tr>
-                <tr class="schedule-row">
-                    <td class="time-col">Session 6<br>Communication & Investor View</td>
-                    <td class="content-col">
-                        <span class="theme-tag">Market Truth</span> <span class="theme-tag" style="background-color: var(--gray)">Leadership, Capital</span>
-                        <ul class="discussion-points">
-                            <li>Strategic Storytelling</li>
-                            <li>Trust as Asset</li>
-                            <li>Investor Expectations & Realities</li>
+                <tr class="prog-row break-row">
+                    <td class="prog-time" style="color:var(--accent)">15:30 - 15:50</td>
+                    <td class="prog-content">
+                        <div class="break-title"><span style="margin-right:8px; font-size:16px;">🍵</span> Afternoon Refresh</div>
+                        <div style="margin-top:5px; font-size:14px; color:#666;">Energy Recharging Time</div>
+                    </td>
+                </tr>
+                <tr class="prog-row">
+                    <td class="prog-time">15:50 - 16:50</td>
+                    <td class="prog-content">
+                        <span class="session-badge">Session 6</span>
+                        <div class="session-title">Human Capital & Organizational Redesign <span style="font-weight:400; font-size:0.8em; color:#666;">(CEO-Focused)</span></div>
+                        <div class="session-desc">"사람을 지키는 결정과 회사를 살리는 결정은 언제 충돌하는가?"</div>
+                        <div class="session-context">
+                            본 세션은 HR을 제도나 문화가 아닌, CEO가 가장 피하고 싶지만 반드시 내려야 하는 결정의 영역으로 다룹니다. 조직을 유지할 것인가, 재설계할 것인가의 기준을 묻습니다.
+                        </div>
+                        <ul class="bullet-list">
+                            <li><strong>Survival vs. Loyalty:</strong> 조직을 지키는 결정과 생존을 택하는 결정이 충돌하는 순간</li>
+                            <li><strong>Key Talent Dilemma:</strong> 핵심 인재를 지키는 선택이 조직 전체를 흔들 때</li>
+                            <li><strong>Culture Breakdown:</strong> 성과보다 문화가 먼저 무너지는 시점은 언제 오는가?</li>
+                            <li><strong>Post-Restructuring Risk:</strong> 구조조정 이후 CEO가 가장 먼저 마주하는 리스크</li>
+                            <li><strong>Irreversible Decisions:</strong> 사람에 대한 결정이 전략이 되는 순간과, 후회로 남는 순간</li>
                         </ul>
+                    </td>
+                </tr>
+                <tr class="prog-row" style="border-bottom:none;">
+                    <td class="prog-time">16:50 - 17:00</td>
+                    <td class="prog-content">
+                        <div class="session-title" style="font-size:18px;">Closing & Wrap-up</div>
                     </td>
                 </tr>
             </table>
         </div>
+
+        <div id="timetable" class="tab-content">
+            <h2 class="tab-title" style="margin-bottom:20px;">Official Schedule</h2>
+            
+            <div class="day-group">
+                <div class="day-header">
+                    <span>2026-02-27 (Fri)</span>
+                    <span class="day-label">Day 1</span>
+                </div>
+                <div class="tt-row">
+                    <div class="tt-time">15:30 – 16:00</div>
+                    <div class="tt-content">Registration</div>
+                    <div class="tt-venue">비오토피아 입구</div>
+                </div>
+                <div class="tt-row">
+                    <div class="tt-time">16:00 – 17:00</div>
+                    <div class="tt-content">Welcome Reception (Standing)</div>
+                    <div class="tt-venue">연회장 포이어</div>
+                </div>
+                <div class="tt-row">
+                    <div class="tt-time">17:30 – 18:20</div>
+                    <div class="tt-content">Opening Speech</div>
+                    <div class="tt-venue">비오토피아 메인홀</div>
+                </div>
+                <div class="tt-row" style="background-color: #f4fbff;">
+                    <div class="tt-time">18:30 – 20:30</div>
+                    <div class="tt-content"><strong>Gala Dinner</strong></div>
+                    <div class="tt-venue">비오토피아 메인홀</div>
+                </div>
+                <div class="tt-row">
+                    <div class="tt-time">20:30 –</div>
+                    <div class="tt-content">Networking Night</div>
+                    <div class="tt-venue">타운하우스 (W22)</div>
+                </div>
+            </div>
+
+            <div class="day-group">
+                <div class="day-header">
+                    <span>2026-02-28 (Sat)</span>
+                    <span class="day-label">Day 2</span>
+                </div>
+                <div class="tt-row">
+                    <div class="tt-time">07:00 – 08:30</div>
+                    <div class="tt-content">조식</div>
+                    <div class="tt-venue">디아넥스 레스토랑</div>
+                </div>
+                
+                <div class="tt-row">
+                    <div class="tt-time">09:00 – 10:00</div>
+                    <div class="tt-content">
+                        <span class="tt-title">SESSION 1: Financial Survival Strategy</span>
+                        <span class="tt-quote">"지금의 시장에서, 우리는 정말 '재무적으로 안전한 전략'을 가지고 있는가?"</span>
+                        <ul class="tt-list">
+                            <li><strong>Advanced IPO Roadmap:</strong> 상장 시점과 시장 선택의 영향</li>
+                            <li><strong>Runway & Dilution:</strong> 생존을 위한 Runway 확보와 지분 희석 간 균형</li>
+                        </ul>
+                    </div>
+                    <div class="tt-venue">컨퍼런스룸</div>
+                </div>
+
+                <div class="tt-row">
+                    <div class="tt-time">10:00 – 11:00</div>
+                    <div class="tt-content">
+                        <span class="tt-title">SESSION 2: Creative Deal-Making</span>
+                        <span class="tt-quote">"딜은 자금을 가져오는 수단인가, 기업의 미래를 규정하는 결정인가?"</span>
+                        <ul class="tt-list">
+                            <li><strong>Strategic Structure:</strong> 파트너십을 통한 기업 가치 제고</li>
+                            <li><strong>Optionality:</strong> 불확실한 시장에서의 미래 선택지 확보 전략</li>
+                        </ul>
+                    </div>
+                    <div class="tt-venue">컨퍼런스룸</div>
+                </div>
+
+                <div class="tt-row" style="background-color:#f9f9f9;">
+                    <div class="tt-time" style="color:var(--accent)">11:00 – 11:20</div>
+                    <div class="tt-content">
+                        <span style="color:var(--accent); font-weight:bold;">☕ MORNING COFFEE BREAK</span><br>
+                        <span style="font-size:12px; color:#666;">Networking with Coffee & Cookies</span>
+                    </div>
+                    <div class="tt-venue">로비</div>
+                </div>
+
+                <div class="tt-row">
+                    <div class="tt-time">11:20 – 12:20</div>
+                    <div class="tt-content">
+                        <span class="tt-title">SESSION 3: Global Ops & Lean Team</span>
+                        <span class="tt-quote">"비대해진 조직, 어떻게 민첩한 실행 조직으로 탈바꿈할 것인가?"</span>
+                        <ul class="tt-list">
+                            <li><strong>Lean Global Team:</strong> 역량 중심의 초경량 글로벌 조직 운영</li>
+                            <li><strong>Execution Gap:</strong> 전략과 현장 사이의 실행력 누수 방지</li>
+                        </ul>
+                    </div>
+                    <div class="tt-venue">컨퍼런스룸</div>
+                </div>
+
+                <div class="tt-row" style="background-color:#f9f9f9;">
+                    <div class="tt-time" style="color:var(--accent)">12:20 – 13:30</div>
+                    <div class="tt-content">
+                        <span style="color:var(--accent); font-weight:bold;">🍽 LUNCHEON</span><br>
+                        <span style="font-size:12px; color:#666;">Networking Lunch</span>
+                    </div>
+                    <div class="tt-venue">디아넥스 레스토랑</div>
+                </div>
+
+                <div class="tt-row">
+                    <div class="tt-time">13:30 – 14:30</div>
+                    <div class="tt-content">
+                        <span class="tt-title">SESSION 4: AI as a Strategic Lever</span>
+                        
+                        <div style="margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px dashed #eee;">
+                            <span class="tt-track-tag bg-a">Track A: Tech-heavy</span>
+                            <span class="tt-quote">"AI는 '가능한 기술'인가, '현실에서 운영 가능한 시스템'인가?"</span>
+                            <ul class="tt-list">
+                                <li><strong>PoC Trap:</strong> 파일럿 단계에서 멈추는 기술·조직적 원인</li>
+                                <li><strong>Data Architecture:</strong> 성과를 좌우하는 데이터 구조와 품질</li>
+                                <li><strong>Sustainable AI:</strong> 유지 가능한 AI 시스템의 조건</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <span class="tt-track-tag bg-b">Track B: Business-heavy</span>
+                            <span class="tt-quote">"AI는 생산성 도구인가, 경영 권한을 재편하는 전략 자산인가?"</span>
+                            <ul class="tt-list">
+                                <li><strong>Structural Impact:</strong> 조직 구조 변화를 요구하는 비용 절감</li>
+                                <li><strong>Leadership Frame:</strong> CEO의 판단 프레임으로서의 AI 전략</li>
+                                <li><strong>Business Cannibalization:</strong> 기존 사업 잠식 시의 선택</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tt-venue">컨퍼런스룸</div>
+                </div>
+
+                <div class="tt-row">
+                    <div class="tt-time">14:30 – 15:30</div>
+                    <div class="tt-content">
+                        <span class="tt-title">SESSION 5: Resilient Leadership</span>
+                        <span class="tt-quote">"답이 없는 상황에서, 리더는 무엇으로 조직을 이끄는가?"</span>
+                        <ul class="tt-list">
+                            <li><strong>The Weight of Decision:</strong> CEO의 결단과 멘탈 관리</li>
+                            <li><strong>Crisis Communication:</strong> 위기를 신뢰 자산으로 바꾸는 전략</li>
+                        </ul>
+                    </div>
+                    <div class="tt-venue">컨퍼런스룸</div>
+                </div>
+
+                <div class="tt-row" style="background-color:#f9f9f9;">
+                    <div class="tt-time" style="color:var(--accent)">15:30 – 15:50</div>
+                    <div class="tt-content">
+                        <span style="color:var(--accent); font-weight:bold;">🍵 AFTERNOON REFRESH</span><br>
+                        <span style="font-size:12px; color:#666;">Energy Recharging Time</span>
+                    </div>
+                    <div class="tt-venue">로비</div>
+                </div>
+
+                <div class="tt-row">
+                    <div class="tt-time">15:50 – 16:50</div>
+                    <div class="tt-content">
+                        <span class="tt-title">SESSION 6: Human Capital (CEO-Focused)</span>
+                        <span class="tt-quote">"사람을 지키는 결정과 회사를 살리는 결정은 언제 충돌하는가?"</span>
+                        <ul class="tt-list">
+                            <li><strong>Survival vs. Loyalty:</strong> 조직 생존과 의리가 충돌하는 순간</li>
+                            <li><strong>Key Talent Dilemma:</strong> 핵심 인재 보호가 조직을 흔들 때</li>
+                            <li><strong>Culture Breakdown:</strong> 성과보다 문화가 먼저 무너지는 시점</li>
+                            <li><strong>Irreversible Decisions:</strong> 사람에 대한 결정이 전략이 되는 순간</li>
+                        </ul>
+                    </div>
+                    <div class="tt-venue">컨퍼런스룸</div>
+                </div>
+
+                <div class="tt-row">
+                    <div class="tt-time">16:50 – 17:00</div>
+                    <div class="tt-content"><strong>Closing & Wrap-up</strong></div>
+                    <div class="tt-venue">컨퍼런스룸</div>
+                </div>
+
+                <div class="tt-row">
+                    <div class="tt-time">18:00 –</div>
+                    <div class="tt-content">Dinner & After Gathering</div>
+                    <div class="tt-venue">(추후 안내) / W22</div>
+                </div>
+            </div>
+
+            <div class="day-group">
+                <div class="day-header">
+                    <span>2026-03-01 (Sun)</span>
+                    <span class="day-label">Day 3</span>
+                </div>
+                <div class="tt-row">
+                    <div class="tt-time">07:00 – 08:30</div>
+                    <div class="tt-content">조식 (Breakfast)</div>
+                    <div class="tt-venue">디아넥스 레스토랑</div>
+                </div>
+                <div class="tt-row">
+                    <div class="tt-time">09:00 – 12:00</div>
+                    <div class="tt-content">Morning Activity</div>
+                    <div class="tt-venue">(추후 안내)</div>
+                </div>
+                <div class="tt-row">
+                    <div class="tt-time">12:00 –</div>
+                    <div class="tt-content">개별 귀가</div>
+                    <div class="tt-venue">-</div>
+                </div>
+            </div>
+
+        </div>
+
     </div>
 
     <script>
