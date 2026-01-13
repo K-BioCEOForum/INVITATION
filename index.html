@@ -19,11 +19,11 @@
         /* [추가 색상 변수] */
         :root {
             /* Program 탭 색상 */
-            --prog-blue: #4D8DF5;   /* 스크린샷 파란색 */
+            --prog-blue: #4D8DF5;   
             --prog-green: #85AC0D;
             --prog-dark-green: #4B5D16;
             --prog-badge-default: #93B5E1;
-            --prog-quote-color: #4D8DF5; /* [수정됨] 문구 색상: 파란색으로 변경 */
+            --prog-quote-color: #4D8DF5; /* 문구 색상: 파란색 유지 */
             
             /* Schedule 탭 색상 */
             --sch-teal: #0F6B7E;
@@ -89,8 +89,8 @@
             border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.1);
             overflow: hidden; z-index: 10;
         }
-
-        .main-container.wide-mode { max-width: 1100px; }
+        
+        /* 1단 리스트에서는 wide-mode 불필요, 기본폭 사용 */
 
         .tab-menu {
             display: flex; border-bottom: 1px solid #eee; background: #fff;
@@ -139,7 +139,6 @@
         }
 
         /* [Program 탭 스타일] */
-        /* [수정됨] 타이틀: 골드 (#d4af37) */
         #program h2.tab-title { color: var(--accent); } 
         #program .tab-subtitle { color: #555; }
         
@@ -172,7 +171,6 @@
             font-size: 20px; font-weight: 700; margin-bottom: 8px; color: #222;
         }
         
-        /* [수정됨] 세션 설명 문구: 파란색 (#4D8DF5) */
         .session-desc {
             font-size: 16px; 
             color: var(--prog-quote-color); 
@@ -199,48 +197,44 @@
         .track-separator { margin: 25px 0; border-bottom: 1px dashed #ddd; }
 
 
-        /* [Schedule 탭 스타일] */
+        /* [Schedule 탭 스타일 - 1단 리스트] */
         #timetable h2.tab-title { color: var(--sch-teal); }
 
-        .sch-dashboard {
-            display: grid;
-            grid-template-columns: 1fr 1fr; /* 1:1 2단 분할 */
-            gap: 25px;
-            margin-top: 10px;
+        /* [수정] 1단 레이아웃을 위한 컨테이너 스타일 */
+        .sch-container {
+            display: block; /* Grid 제거 */
+            width: 100%;
+        }
+
+        .sch-day-block {
+            margin-bottom: 40px; /* 날짜별 간격 */
         }
 
         .sch-day-header {
-            /* 기본 그라데이션: Teal -> Green */
             background: linear-gradient(90deg, var(--sch-gradient-start) 0%, var(--sch-gradient-end) 100%);
             color: white;
-            padding: 12px 15px;
-            font-size: 15px;
+            padding: 12px 20px;
+            font-size: 16px;
             font-weight: 700;
             border-radius: 6px;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .sch-day-header.continued {
-            background: linear-gradient(90deg, var(--sch-gradient-start) 0%, var(--sch-gradient-end) 100%);
-            opacity: 0.95;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
         .sch-list {
             background: #fff;
             border: 1px solid #eee;
             border-radius: 8px;
-            padding: 0 15px;
-            margin-bottom: 25px;
+            padding: 0 20px; /* 패딩 약간 증가 */
             box-shadow: 0 2px 10px rgba(0,0,0,0.02);
         }
 
         .sch-row {
             display: flex;
-            padding: 12px 5px;
+            padding: 18px 5px; /* 행 간격 약간 증가 */
             border-bottom: 1px solid #f0f0f0;
             align-items: flex-start;
         }
@@ -250,11 +244,11 @@
         .sch-row.break { background-color: var(--sch-break-bg); border-radius: 4px; }
 
         .sch-time {
-            width: 95px;
+            width: 110px; /* 시간 너비 약간 확보 */
             font-family: 'Outfit', sans-serif;
             font-weight: 700;
             color: #333;
-            font-size: 13px;
+            font-size: 14px;
             flex-shrink: 0;
             padding-top: 2px;
         }
@@ -269,27 +263,28 @@
             font-weight: 800;
             color: var(--sch-teal);
             display: block;
-            margin-bottom: 3px;
+            margin-bottom: 5px;
+            font-size: 15px;
             line-height: 1.3;
         }
 
         .sch-quote {
             display: block;
-            font-size: 12px;
+            font-size: 13px;
             color: #555;
             background-color: #f4f4f4;
-            padding: 4px 8px;
+            padding: 6px 10px;
             border-radius: 4px;
             border-left: 3px solid var(--sch-gradient-end);
-            margin-top: 5px;
-            margin-bottom: 5px;
-            line-height: 1.4;
+            margin-top: 6px;
+            margin-bottom: 6px;
+            line-height: 1.5;
         }
 
         .sch-venue {
-            width: 90px;
+            width: 120px;
             text-align: right;
-            font-size: 11px;
+            font-size: 12px;
             color: var(--sch-teal);
             font-weight: 600;
             flex-shrink: 0;
@@ -297,19 +292,19 @@
         }
 
         .sch-track {
-            margin-top: 8px;
-            padding-top: 6px;
+            margin-top: 10px;
+            padding-top: 8px;
             border-top: 1px dashed #eee;
         }
         .sch-track:first-of-type { border-top: none; padding-top: 0; }
         .track-badge {
             display: inline-block;
-            font-size: 10px;
+            font-size: 11px;
             font-weight: bold;
             color: #fff;
-            padding: 2px 6px;
-            border-radius: 3px;
-            margin-bottom: 3px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-bottom: 4px;
         }
         .tb-a { background-color: var(--prog-blue); }
         .tb-b { background-color: var(--prog-green); }
@@ -333,8 +328,8 @@
             .prog-time { width: 100%; border-right: none; padding: 10px 0 5px 0; border-bottom: 1px dashed #eee; display: block; color: var(--accent); }
             .prog-content { padding: 10px 0 30px 0; display: block; width: 100%; }
             
-            .sch-dashboard { grid-template-columns: 1fr; gap: 10px; }
-            .sch-time { width: 85px; font-size: 12px; }
+            /* Schedule Mobile */
+            .sch-time { width: 90px; font-size: 13px; }
             .sch-venue { display: none; }
             
             .logo { width: 95%; margin-bottom: 15px; }
@@ -524,10 +519,9 @@
         <div id="timetable" class="tab-content">
             <h2 class="tab-title" style="margin-bottom:20px;">Official Schedule</h2>
             
-            <div class="sch-dashboard">
+            <div class="sch-container">
                 
-                <div class="sch-column">
-                    
+                <div class="sch-day-block">
                     <div class="sch-day-header">
                         <span>2026-02-27 (Fri)</span>
                         <span class="day-label">Day 1</span>
@@ -561,7 +555,9 @@
                             <div class="sch-venue">W22</div>
                         </div>
                     </div>
+                </div>
 
+                <div class="sch-day-block">
                     <div class="sch-day-header">
                         <span>2026-02-28 (Sat)</span>
                         <span class="day-label">Day 2</span>
@@ -603,18 +599,6 @@
                             </div>
                             <div class="sch-venue">컨퍼런스룸</div>
                         </div>
-                    </div>
-
-                </div>
-
-                <div class="sch-column">
-                    
-                    <div class="sch-day-header continued">
-                        <span>2026-02-28 (Sat)</span>
-                        <span class="day-label">Day 2 (Cont.)</span>
-                    </div>
-                    
-                    <div class="sch-list">
                         <div class="sch-row break">
                             <div class="sch-time" style="color:var(--accent)">12:20 – 13:30</div>
                             <div class="sch-content">
@@ -622,7 +606,6 @@
                             </div>
                             <div class="sch-venue">디아넥스</div>
                         </div>
-
                         <div class="sch-row">
                             <div class="sch-time">13:30 – 14:30</div>
                             <div class="sch-content">
@@ -639,7 +622,6 @@
                             </div>
                             <div class="sch-venue">컨퍼런스룸</div>
                         </div>
-
                         <div class="sch-row">
                             <div class="sch-time">14:30 – 15:30</div>
                             <div class="sch-content">
@@ -648,7 +630,6 @@
                             </div>
                             <div class="sch-venue">컨퍼런스룸</div>
                         </div>
-
                         <div class="sch-row break">
                             <div class="sch-time" style="color:var(--accent)">15:30 – 15:50</div>
                             <div class="sch-content">
@@ -656,7 +637,6 @@
                             </div>
                             <div class="sch-venue">로비</div>
                         </div>
-
                         <div class="sch-row">
                             <div class="sch-time">15:50 – 16:50</div>
                             <div class="sch-content">
@@ -665,7 +645,6 @@
                             </div>
                             <div class="sch-venue">컨퍼런스룸</div>
                         </div>
-
                         <div class="sch-row">
                             <div class="sch-time">16:50 – 17:00</div>
                             <div class="sch-content">
@@ -673,14 +652,15 @@
                             </div>
                             <div class="sch-venue">컨퍼런스룸</div>
                         </div>
-
                         <div class="sch-row">
                             <div class="sch-time">18:00 –</div>
                             <div class="sch-content">Dinner & Post-event Gathering</div>
                             <div class="sch-venue">포도호텔/W22</div>
                         </div>
                     </div>
+                </div>
 
+                <div class="sch-day-block">
                     <div class="sch-day-header">
                         <span>2026-03-01 (Sun)</span>
                         <span class="day-label">Day 3</span>
@@ -702,8 +682,8 @@
                             <div class="sch-venue">-</div>
                         </div>
                     </div>
-
                 </div>
+
             </div>
             
             <div class="footer-info" style="margin-top:0; border-top:none;">
@@ -727,14 +707,6 @@
             }
             document.getElementById(tabName).style.display = "block";
             
-            // 일정표 탭일 경우 컨테이너를 더 넓게 조정
-            var container = document.getElementById("mainContainer");
-            if(tabName === 'timetable') {
-                container.classList.add("wide-mode");
-            } else {
-                container.classList.remove("wide-mode");
-            }
-
             setTimeout(() => {
                 document.getElementById(tabName).classList.add("active");
             }, 10);
