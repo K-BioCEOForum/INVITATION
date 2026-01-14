@@ -111,7 +111,7 @@
             background-color: #fff;
         }
 
-        /* [수정: 비활성화 및 Coming Soon 스타일] */
+        /* [비활성화 및 Coming Soon 스타일] */
         .tab-btn.disabled {
             cursor: default;
             opacity: 0.5;
@@ -332,12 +332,12 @@
         <nav class="tab-menu">
             <button class="tab-btn active" onclick="openTab(event, 'intro')"> 인사말 </button>
             
+            <button class="tab-btn" onclick="openTab(event, 'timetable')"> 일정표 </button>
+            
             <button class="tab-btn disabled">
                 프로그램 
                 <span class="coming-soon-badge">Coming Soon</span>
             </button>
-            
-            <button class="tab-btn" onclick="openTab(event, 'timetable')"> 일정표 </button>
         </nav>
 
         <div id="intro" class="tab-content active">
@@ -360,145 +360,6 @@
                     <p><strong>Contact</strong> <a href="mailto:moonjkim01@gmail.com" style="color:inherit; text-decoration:none;">김문정</a></p>
                 </div>
             </div>
-        </div>
-
-        <div id="program" class="tab-content">
-            <h2 class="tab-title">The Great Reset: Strategy, Structure, and Leadership</h2>
-            <span class="tab-subtitle">Designing the Next Corporate Reality in the Age of Uncertainty</span>
-            
-            <table class="prog-table">
-                <tr class="prog-row">
-                    <td class="prog-time">09:00 - 10:00</td>
-                    <td class="prog-content">
-                        <span class="session-badge">Session 1</span>
-                        <div class="session-title">Financial Survival Strategy</div>
-                        <div class="session-desc">"지금의 시장에서, 우리는 정말 ‘재무적으로 안전한 전략’을 가지고 있는가?"</div>
-                        <ul class="bullet-list">
-                            <li><strong>The Great Reset & Market Truth:</strong> 변화된 자본 시장의 구조적 현실과 투자자의 새로운 요구 사항</li>
-                            <li><strong>Advanced IPO Roadmap:</strong> 상장 시점과 시장 선택이 기업 운명에 미치는 영향</li>
-                            <li><strong>Runway & Dilution:</strong> 생존을 위한 Runway 확보와 주주 가치 희석(Dilution) 간의 정교한 균형점 찾기</li>
-                        </ul>
-                    </td>
-                </tr>
-                <tr class="prog-row">
-                    <td class="prog-time">10:00 - 11:00</td>
-                    <td class="prog-content">
-                        <span class="session-badge">Session 2</span>
-                        <div class="session-title">Creative Deal-Making</div>
-                        <div class="session-desc">"딜은 자금을 가져오는 수단인가, 기업의 미래를 규정하는 결정인가?"</div>
-                        <ul class="bullet-list">
-                            <li><strong>Strategic Structure:</strong> 파트너십을 단순 계약이 아닌, 기업 가치를 높이는 구조로 설계하는 법</li>
-                            <li><strong>Cross-border Dynamics:</strong> 국경을 넘는 딜에서 발생하는 리스크와 기회의 역학 관계</li>
-                            <li><strong>Optionality:</strong> 불확실한 시장 상황에서 기업의 생존을 위한 다양한 미래 선택지 확보 전략</li>
-                        </ul>
-                    </td>
-                </tr>
-                <tr class="prog-row prog-break-row">
-                    <td class="prog-time" style="color:var(--prog-green)">11:00 - 11:20</td>
-                    <td class="prog-content">
-                        <div class="prog-break-title"><span style="margin-right:8px; font-size:16px;">☕</span> Morning Coffee Break</div>
-                        <div style="margin-top:5px; font-size:14px; color:#666;">Networking with Coffee & Cookies</div>
-                    </td>
-                </tr>
-                <tr class="prog-row">
-                    <td class="prog-time">11:20 - 12:20</td>
-                    <td class="prog-content">
-                        <span class="session-badge">Session 3</span>
-                        <div class="session-title">Global Ops & Lean Team Excellence</div>
-                        <div class="session-desc">"비대해진 조직, 어떻게 민첩한 실행 조직으로 탈바꿈할 것인가?"</div>
-                        <ul class="bullet-list">
-                            <li><strong>Lean Global Team:</strong> 지역적 한계를 넘어선 역량 중심의 초경량 글로벌 조직 운영 모델</li>
-                            <li><strong>Transition Management:</strong> 연구 개발(R&D) 중심 조직에서 상업화 및 비즈니스 중심 조직으로의 전환 전략</li>
-                            <li><strong>Execution Gap:</strong> 전략과 현장 사이의 실행력 누수를 막는 오퍼레이션 최적화</li>
-                        </ul>
-                    </td>
-                </tr>
-                <tr class="prog-row prog-break-row">
-                    <td class="prog-time" style="color:var(--prog-green)">12:20 - 13:30</td>
-                    <td class="prog-content">
-                        <div class="prog-break-title"><span style="margin-right:8px; font-size:16px;">🍽️</span> Luncheon</div>
-                        <div style="margin-top:5px; font-size:14px; color:#666;">Networking Lunch at The Annex Restaurant</div>
-                    </td>
-                </tr>
-                <tr class="prog-row">
-                    <td class="prog-time">13:30 - 14:30</td>
-                    <td class="prog-content">
-                        <span class="session-badge track-a">Session 4-A</span>
-                        <div class="session-title">AI as a Strategic Lever <span style="font-weight:400; font-size:0.8em; color:#666;">(Tech-heavy Track)</span></div>
-                        <div class="session-desc">"AI는 ‘가능한 기술’인가, ‘현실에서 운영 가능한 시스템’인가?"</div>
-                        <div class="session-context">
-                            본 트랙은 AI를 개념이나 트렌드가 아닌, 실제로 구축·운영하며 실패와 한계를 경험한 기술 관점에서 다룹니다. AI가 왜 PoC를 넘지 못하는지, 어디서 구조적으로 무너지는지를 짚습니다.
-                        </div>
-                        <ul class="bullet-list">
-                            <li><strong>PoC Trap:</strong> AI 프로젝트가 파일럿 단계에서 멈추는 기술·조직적 원인</li>
-                            <li><strong>Data Architecture:</strong> 모델 성능보다 성과를 좌우하는 데이터 구조와 품질의 현실</li>
-                            <li><strong>Tech–Business Friction:</strong> 기술 조직과 현업 조직이 충돌하는 지점과 책임의 공백</li>
-                            <li><strong>Build vs. Buy:</strong> 내부 구축과 외부 솔루션 선택을 가르는 현실적 판단 기준</li>
-                            <li><strong>Sustainable AI:</strong> ‘작동하는 데모’가 아닌, 유지 가능한 AI 시스템의 조건</li>
-                        </ul>
-
-                        <div class="track-separator"></div>
-
-                        <span class="session-badge track-b">Session 4-B</span>
-                        <div class="session-title">AI as a Strategic Lever <span style="font-weight:400; font-size:0.8em; color:#666;">(Business-heavy Track)</span></div>
-                        <div class="session-desc">"AI는 생산성 도구인가, 경영 권한을 재편하는 전략 자산인가?"</div>
-                        <div class="session-context">
-                            본 트랙은 AI를 기술이 아닌 경영 의사결정 구조와 책임 체계를 흔드는 전략 변수로 다룹니다. AI 도입이 조직과 리더십에 요구하는 선택을 정면으로 다룹니다.
-                        </div>
-                        <ul class="bullet-list">
-                            <li><strong>Structural Impact:</strong> AI 도입이 비용 절감을 넘어 조직 구조 변화를 요구하는 순간</li>
-                            <li><strong>Decision Boundary:</strong> AI가 개입할 수 있는 의사결정 영역과 인간의 역할 경계</li>
-                            <li><strong>Leadership Frame:</strong> AI 전략은 IT 로드맵이 아닌 CEO의 판단 프레임이라는 관점</li>
-                            <li><strong>Failure Ownership:</strong> AI 실패의 책임은 기술에 있는가, 리더십에 있는가?</li>
-                            <li><strong>Business Cannibalization:</strong> AI가 기존 사업을 잠식할 때 CEO가 내려야 하는 선택</li>
-                        </ul>
-                    </td>
-                </tr>
-                <tr class="prog-row">
-                    <td class="prog-time">14:30 - 15:30</td>
-                    <td class="prog-content">
-                        <span class="session-badge">Session 5</span>
-                        <div class="session-title">Resilient Leadership</div>
-                        <div class="session-desc">"답이 없는 상황에서, 리더는 무엇으로 조직을 이끄는가?"</div>
-                        <ul class="bullet-list">
-                            <li><strong>The Weight of Decision:</strong> 불확실성 속에서 내려야 하는 CEO의 고독한 결단과 멘탈 관리</li>
-                            <li><strong>Trust Building:</strong> 구성원의 기대와 회사의 냉혹한 현실 사이의 간극을 좁히는 투명한 소통</li>
-                            <li><strong>Crisis Communication:</strong> 위기를 기회로, 불신을 신뢰 자산으로 바꾸는 리더의 메시지 전략</li>
-                        </ul>
-                    </td>
-                </tr>
-                <tr class="prog-row prog-break-row">
-                    <td class="prog-time" style="color:var(--prog-green)">15:30 - 15:50</td>
-                    <td class="prog-content">
-                        <div class="prog-break-title"><span style="margin-right:8px; font-size:16px;">🍵</span> Afternoon Refresh</div>
-                        <div style="margin-top:5px; font-size:14px; color:#666;">Energy Recharging Time</div>
-                    </td>
-                </tr>
-                <tr class="prog-row">
-                    <td class="prog-time">15:50 - 16:50</td>
-                    <td class="prog-content">
-                        <span class="session-badge">Session 6</span>
-                        <div class="session-title">Human Capital & Organizational Redesign <span style="font-weight:400; font-size:0.8em; color:#666;">(CEO-Focused)</span></div>
-                        <div class="session-desc">"사람을 지키는 결정과 회사를 살리는 결정은 언제 충돌하는가?"</div>
-                        <div class="session-context">
-                            본 세션은 HR을 제도나 문화가 아닌, CEO가 가장 피하고 싶지만 반드시 내려야 하는 결정의 영역으로 다룹니다. 조직을 유지할 것인가, 재설계할 것인가의 기준을 묻습니다.
-                        </div>
-                        <ul class="bullet-list">
-                            <li><strong>Survival vs. Loyalty:</strong> 조직을 지키는 결정과 생존을 택하는 결정이 충돌하는 순간</li>
-                            <li><strong>Key Talent Dilemma:</strong> 핵심 인재를 지키는 선택이 조직 전체를 흔들 때</li>
-                            <li><strong>Culture Breakdown:</strong> 성과보다 문화가 먼저 무너지는 시점은 언제 오는가?</li>
-                            <li><strong>Post-Restructuring Risk:</strong> 구조조정 이후 CEO가 가장 먼저 마주하는 리스크</li>
-                            <li><strong>Irreversible Decisions:</strong> 사람에 대한 결정이 전략이 되는 순간과, 후회로 남는 순간</li>
-                        </ul>
-                    </td>
-                </tr>
-                <tr class="prog-row" style="border-bottom:none;">
-                    <td class="prog-time">16:50 - 17:00</td>
-                    <td class="prog-content">
-                        <div class="session-title" style="font-size:18px;">Closing & Wrap-up</div>
-                    </td>
-                </tr>
-            </table>
         </div>
 
         <div id="timetable" class="tab-content">
@@ -674,6 +535,145 @@
             <div class="footer-info" style="margin-top:0; border-top:none;">
                 <p>※ 상기 일정 및 연사는 주최 측 사정에 따라 일부 변경될 수 있습니다.</p>
             </div>
+        </div>
+
+        <div id="program" class="tab-content">
+            <h2 class="tab-title">The Great Reset: Strategy, Structure, and Leadership</h2>
+            <span class="tab-subtitle">Designing the Next Corporate Reality in the Age of Uncertainty</span>
+            
+            <table class="prog-table">
+                <tr class="prog-row">
+                    <td class="prog-time">09:00 - 10:00</td>
+                    <td class="prog-content">
+                        <span class="session-badge">Session 1</span>
+                        <div class="session-title">Financial Survival Strategy</div>
+                        <div class="session-desc">"지금의 시장에서, 우리는 정말 ‘재무적으로 안전한 전략’을 가지고 있는가?"</div>
+                        <ul class="bullet-list">
+                            <li><strong>The Great Reset & Market Truth:</strong> 변화된 자본 시장의 구조적 현실과 투자자의 새로운 요구 사항</li>
+                            <li><strong>Advanced IPO Roadmap:</strong> 상장 시점과 시장 선택이 기업 운명에 미치는 영향</li>
+                            <li><strong>Runway & Dilution:</strong> 생존을 위한 Runway 확보와 주주 가치 희석(Dilution) 간의 정교한 균형점 찾기</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr class="prog-row">
+                    <td class="prog-time">10:00 - 11:00</td>
+                    <td class="prog-content">
+                        <span class="session-badge">Session 2</span>
+                        <div class="session-title">Creative Deal-Making</div>
+                        <div class="session-desc">"딜은 자금을 가져오는 수단인가, 기업의 미래를 규정하는 결정인가?"</div>
+                        <ul class="bullet-list">
+                            <li><strong>Strategic Structure:</strong> 파트너십을 단순 계약이 아닌, 기업 가치를 높이는 구조로 설계하는 법</li>
+                            <li><strong>Cross-border Dynamics:</strong> 국경을 넘는 딜에서 발생하는 리스크와 기회의 역학 관계</li>
+                            <li><strong>Optionality:</strong> 불확실한 시장 상황에서 기업의 생존을 위한 다양한 미래 선택지 확보 전략</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr class="prog-row prog-break-row">
+                    <td class="prog-time" style="color:var(--prog-green)">11:00 - 11:20</td>
+                    <td class="prog-content">
+                        <div class="prog-break-title"><span style="margin-right:8px; font-size:16px;">☕</span> Morning Coffee Break</div>
+                        <div style="margin-top:5px; font-size:14px; color:#666;">Networking with Coffee & Cookies</div>
+                    </td>
+                </tr>
+                <tr class="prog-row">
+                    <td class="prog-time">11:20 - 12:20</td>
+                    <td class="prog-content">
+                        <span class="session-badge">Session 3</span>
+                        <div class="session-title">Global Ops & Lean Team Excellence</div>
+                        <div class="session-desc">"비대해진 조직, 어떻게 민첩한 실행 조직으로 탈바꿈할 것인가?"</div>
+                        <ul class="bullet-list">
+                            <li><strong>Lean Global Team:</strong> 지역적 한계를 넘어선 역량 중심의 초경량 글로벌 조직 운영 모델</li>
+                            <li><strong>Transition Management:</strong> 연구 개발(R&D) 중심 조직에서 상업화 및 비즈니스 중심 조직으로의 전환 전략</li>
+                            <li><strong>Execution Gap:</strong> 전략과 현장 사이의 실행력 누수를 막는 오퍼레이션 최적화</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr class="prog-row prog-break-row">
+                    <td class="prog-time" style="color:var(--prog-green)">12:20 - 13:30</td>
+                    <td class="prog-content">
+                        <div class="prog-break-title"><span style="margin-right:8px; font-size:16px;">🍽️</span> Luncheon</div>
+                        <div style="margin-top:5px; font-size:14px; color:#666;">Networking Lunch at The Annex Restaurant</div>
+                    </td>
+                </tr>
+                <tr class="prog-row">
+                    <td class="prog-time">13:30 - 14:30</td>
+                    <td class="prog-content">
+                        <span class="session-badge track-a">Session 4-A</span>
+                        <div class="session-title">AI as a Strategic Lever <span style="font-weight:400; font-size:0.8em; color:#666;">(Tech-heavy Track)</span></div>
+                        <div class="session-desc">"AI는 ‘가능한 기술’인가, ‘현실에서 운영 가능한 시스템’인가?"</div>
+                        <div class="session-context">
+                            본 트랙은 AI를 개념이나 트렌드가 아닌, 실제로 구축·운영하며 실패와 한계를 경험한 기술 관점에서 다룹니다. AI가 왜 PoC를 넘지 못하는지, 어디서 구조적으로 무너지는지를 짚습니다.
+                        </div>
+                        <ul class="bullet-list">
+                            <li><strong>PoC Trap:</strong> AI 프로젝트가 파일럿 단계에서 멈추는 기술·조직적 원인</li>
+                            <li><strong>Data Architecture:</strong> 모델 성능보다 성과를 좌우하는 데이터 구조와 품질의 현실</li>
+                            <li><strong>Tech–Business Friction:</strong> 기술 조직과 현업 조직이 충돌하는 지점과 책임의 공백</li>
+                            <li><strong>Build vs. Buy:</strong> 내부 구축과 외부 솔루션 선택을 가르는 현실적 판단 기준</li>
+                            <li><strong>Sustainable AI:</strong> ‘작동하는 데모’가 아닌, 유지 가능한 AI 시스템의 조건</li>
+                        </ul>
+
+                        <div class="track-separator"></div>
+
+                        <span class="session-badge track-b">Session 4-B</span>
+                        <div class="session-title">AI as a Strategic Lever <span style="font-weight:400; font-size:0.8em; color:#666;">(Business-heavy Track)</span></div>
+                        <div class="session-desc">"AI는 생산성 도구인가, 경영 권한을 재편하는 전략 자산인가?"</div>
+                        <div class="session-context">
+                            본 트랙은 AI를 기술이 아닌 경영 의사결정 구조와 책임 체계를 흔드는 전략 변수로 다룹니다. AI 도입이 조직과 리더십에 요구하는 선택을 정면으로 다룹니다.
+                        </div>
+                        <ul class="bullet-list">
+                            <li><strong>Structural Impact:</strong> AI 도입이 비용 절감을 넘어 조직 구조 변화를 요구하는 순간</li>
+                            <li><strong>Decision Boundary:</strong> AI가 개입할 수 있는 의사결정 영역과 인간의 역할 경계</li>
+                            <li><strong>Leadership Frame:</strong> AI 전략은 IT 로드맵이 아닌 CEO의 판단 프레임이라는 관점</li>
+                            <li><strong>Failure Ownership:</strong> AI 실패의 책임은 기술에 있는가, 리더십에 있는가?</li>
+                            <li><strong>Business Cannibalization:</strong> AI가 기존 사업을 잠식할 때 CEO가 내려야 하는 선택</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr class="prog-row">
+                    <td class="prog-time">14:30 - 15:30</td>
+                    <td class="prog-content">
+                        <span class="session-badge">Session 5</span>
+                        <div class="session-title">Resilient Leadership</div>
+                        <div class="session-desc">"답이 없는 상황에서, 리더는 무엇으로 조직을 이끄는가?"</div>
+                        <ul class="bullet-list">
+                            <li><strong>The Weight of Decision:</strong> 불확실성 속에서 내려야 하는 CEO의 고독한 결단과 멘탈 관리</li>
+                            <li><strong>Trust Building:</strong> 구성원의 기대와 회사의 냉혹한 현실 사이의 간극을 좁히는 투명한 소통</li>
+                            <li><strong>Crisis Communication:</strong> 위기를 기회로, 불신을 신뢰 자산으로 바꾸는 리더의 메시지 전략</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr class="prog-row prog-break-row">
+                    <td class="prog-time" style="color:var(--prog-green)">15:30 - 15:50</td>
+                    <td class="prog-content">
+                        <div class="prog-break-title"><span style="margin-right:8px; font-size:16px;">🍵</span> Afternoon Refresh</div>
+                        <div style="margin-top:5px; font-size:14px; color:#666;">Energy Recharging Time</div>
+                    </td>
+                </tr>
+                <tr class="prog-row">
+                    <td class="prog-time">15:50 - 16:50</td>
+                    <td class="prog-content">
+                        <span class="session-badge">Session 6</span>
+                        <div class="session-title">Human Capital & Organizational Redesign <span style="font-weight:400; font-size:0.8em; color:#666;">(CEO-Focused)</span></div>
+                        <div class="session-desc">"사람을 지키는 결정과 회사를 살리는 결정은 언제 충돌하는가?"</div>
+                        <div class="session-context">
+                            본 세션은 HR을 제도나 문화가 아닌, CEO가 가장 피하고 싶지만 반드시 내려야 하는 결정의 영역으로 다룹니다. 조직을 유지할 것인가, 재설계할 것인가의 기준을 묻습니다.
+                        </div>
+                        <ul class="bullet-list">
+                            <li><strong>Survival vs. Loyalty:</strong> 조직을 지키는 결정과 생존을 택하는 결정이 충돌하는 순간</li>
+                            <li><strong>Key Talent Dilemma:</strong> 핵심 인재를 지키는 선택이 조직 전체를 흔들 때</li>
+                            <li><strong>Culture Breakdown:</strong> 성과보다 문화가 먼저 무너지는 시점은 언제 오는가?</li>
+                            <li><strong>Post-Restructuring Risk:</strong> 구조조정 이후 CEO가 가장 먼저 마주하는 리스크</li>
+                            <li><strong>Irreversible Decisions:</strong> 사람에 대한 결정이 전략이 되는 순간과, 후회로 남는 순간</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr class="prog-row" style="border-bottom:none;">
+                    <td class="prog-time">16:50 - 17:00</td>
+                    <td class="prog-content">
+                        <div class="session-title" style="font-size:18px;">Closing & Wrap-up</div>
+                    </td>
+                </tr>
+            </table>
         </div>
 
     </div>
